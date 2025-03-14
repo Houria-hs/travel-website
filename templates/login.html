@@ -1,0 +1,41 @@
+
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content%}
+
+<div class="py-5 d-flex flex-column align-items-center justify-content-center bg-light" style="min-height: 100vh;">
+    <form 
+        action="{% url 'login' %}" 
+        method="POST" 
+        class="p-4 rounded shadow-lg" 
+        style="width: 100%; max-width: 400px; background-color: #f8f9fa; border: 1px solid #dee2e6;">
+        {% csrf_token %}
+        <fieldset class="form-group mb-4">
+            <legend 
+                class="border-bottom pb-2 mb-3 text-center" 
+                style="font-size: 1.5rem; font-weight: 600;  color: #56c0e9; ">Sign In</legend>
+            {{ loginForm|crispy }}
+        </fieldset>
+        <div class="form-group text-center">
+            <button 
+                type="submit" 
+                class="btn btn-primary w-100 py-2" 
+                style="font-size: 1rem; font-weight: 500;  background-color: #56c0e9;">Sign In</button>
+        </div>
+    </form>
+    <div class="border-top mt-4 pt-3 text-center">
+        <small class="text-muted">
+            Haven't registered yet? 
+            <a 
+                href="{% url 'Register' %}" 
+                class=" font-weight-bold"
+                style="text-decoration: none; color: #ba4395; ">Sign Up
+            </a>
+        </small>
+    </div>
+</div>
+
+
+{% endblock %}
