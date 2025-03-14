@@ -36,19 +36,21 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" href="#">Destinations</a>
                             </li>
+                            {% if user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="#">logout</a>
+                                <a class="nav-link text-dark" href="{% url 'logout' %}">logout</a>
                             </li>
                             <li class="nav-item">
-                                <a class="btn btn-primary px-4" href="#" style="background-color: #56c0e9; border: none;">Sign Up</a>
+                                <a class="btn btn-primary px-4" href="{% url 'Register' %}" style="background-color: #56c0e9; border: none;">Sign Up</a>
                             </li>
-                            
+                            {% else %}
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="#">Login</a>
+                                <a class="nav-link text-dark" href="{% url 'login' %}">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="btn btn-primary px-4" href="#" style="background-color: #56c0e9; border: none;">Sign Up</a>
+                                <a class="btn btn-primary px-4" href="{% url 'Register' %}" style="background-color: #56c0e9; border: none;">Sign Up</a>
                             </li>
+                            {% endif %}
                             
                         </ul>
                     </div>
