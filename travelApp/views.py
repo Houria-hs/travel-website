@@ -3,11 +3,13 @@ from django.contrib.auth import logout , login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from .forms import RegisterForm
+from .models import Destination
 
 # Create your views here.
 
 def home(request):
-    return render(request , 'home.html' , {})
+    Destinations = Destination.objects.all()
+    return render(request , 'home.html', {'Destinations': Destinations})
 
 
 
