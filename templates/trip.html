@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 50%;">
+    <h1 class="special-text text-center" style="color: #ba4395;">Book your trip bellow </h1>
+    <form method="post" action="{% url 'trip' trip.id %}">
+        {% csrf_token %}
+        {{ booking_form|crispy }}  
+        <button class="btn btn-primary"  style="background-color: #56c0e9; border: none; font-weight: bold;" type="submit">Continue to checkout</button>
+    </form>
+</div>
+<br> <br>
+{% endblock %}
