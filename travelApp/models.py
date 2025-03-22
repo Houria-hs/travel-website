@@ -8,6 +8,9 @@ class Destination(models.Model):
     price = models.TextField(max_length=20)
     days = models.CharField(max_length=10)
     people = models.CharField(max_length=10)
+    from_date = models.CharField(max_length = 20 , default='')
+    To_date = models.CharField(max_length = 20 , default='')
+    description = models.CharField(max_length = 1000 , default='')
     image = models.ImageField(upload_to='destinations/')
 
     def __str__(self):
