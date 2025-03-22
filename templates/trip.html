@@ -3,6 +3,26 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+
+{% if trip %}
+<div class="container py-5 d-flex justify-content-center" style="width: 80%;">
+    <div class="card shadow-lg border-0 d-flex flex-row" style="width: 100%; height: 80vh; overflow: hidden; border-radius: 20px;">
+        <div class="col-md-5">
+            <img src="{{ trip.image.url }}" class="img-fluid h-100 w-100 object-fit-cover rounded-start" alt="Trip Image">
+        </div>
+        <div class="col-md-7 ">
+            <div class="card-body">
+                <h3 class="card-title fw-bold"  style="color: #ba4395;">{{ trip.title }}</h3> 
+                <p class="card-text fw-semibold text-success">{{ trip.price }} DA per person</p>
+                <p class="card-text"><i class="bi bi-calendar"></i> {{ trip.days }} days</p>
+                <p class="card-text"><i class="bi bi-people"></i> {{ trip.people }} people max</p>
+                <p class="card-text text-muted">{{ trip.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
 <div class="container mt-5" style="max-width: 50%;">
     <h1 class="special-text text-center" style="color: #ba4395;">Book your trip bellow </h1>
     <form method="post" action="{% url 'trip' trip.id %}">

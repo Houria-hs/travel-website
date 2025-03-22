@@ -5,17 +5,18 @@ from django.contrib.auth.forms import UserCreationForm
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField()
+    gender = forms.CharField(required=False , widget=forms.widgets.TextInput(attrs={"placeholder": "woman/man"}))
+    age = forms.CharField(required=True , widget=forms.widgets.NumberInput(attrs={"placeholder": "18"}))
 
     class Meta:
         model = User
-        fields = {   'email' ,'password1' ,'password2', 'username'}
+        fields = { 'password1' ,'password2', 'username' ,'gender' , 'age','email' }
 
 
 class BookingForm(forms.ModelForm):
     fullname = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Full Name'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
     phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone Number'}))
-    # travel_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}))
     number_of_travelers = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
 
     class Meta:
