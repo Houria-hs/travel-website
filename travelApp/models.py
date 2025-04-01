@@ -35,3 +35,10 @@ class booking(models.Model):
 
     def __str__(self):
         return self.user_fullname
+
+
+class Subscribe(models.Model):
+    email = models.EmailField(max_length=100 , blank=True)
+
+    def __str__(self):
+        return self.email
