@@ -3,7 +3,7 @@ from django.contrib.auth import logout , login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from .forms import RegisterForm , BookingForm
-from .models import Destination , booking
+from .models import Destination , booking , Subscribe
 
 # Create your views here.
 
@@ -65,3 +65,15 @@ def trip(request, pk):
         booking_form = BookingForm()
 
     return render(request, 'trip.html', {'trip': trip, 'booking_form': booking_form})   
+
+def Newsletter_view(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        if Subscribe.objects.filter(email = email).exists():
+            messages.success(request , 'You are already saved')
+            return redirect('home')
+        else:
+            Subscribe.objects.create(email = email)
+            messages.success(request , 'heelll yeaaah we got youuu boomm muah x)))')
+    return render(request , 'home.html' , {})
+
