@@ -1,6 +1,9 @@
 from django.shortcuts import render , redirect , get_object_or_404
 from django.contrib.auth import logout , login 
 from django.contrib.auth.forms import AuthenticationForm
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+from django.http import JsonResponse
 from django.contrib import messages
 from .forms import RegisterForm , BookingForm
 from .models import Destination , booking , Subscribe
@@ -68,12 +71,19 @@ def trip(request, pk):
 
 def Newsletter_view(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
+        email = request.POST.get('email', '').strip()
+        # Validate email format
+        try:
+            validate_email(email)
+        except ValidationError:
+            messages.error(request, 'Invalid email format.')
+            return redirect('home')
+        
         if Subscribe.objects.filter(email = email).exists():
             messages.success(request , 'You are already saved')
             return redirect('home')
         else:
             Subscribe.objects.create(email = email)
-            messages.success(request , 'heelll yeaaah we got youuu boomm muah x)))')
+            messages.success(request , 'Got it , thank you !')
     return render(request , 'home.html' , {})
 

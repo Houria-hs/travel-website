@@ -38,7 +38,7 @@ class booking(models.Model):
 
 
 class Subscribe(models.Model):
-    email = models.EmailField(max_length=100 , blank=True)
+    email = models.EmailField(max_length=100 ,unique=True, blank=True)
 
     def __str__(self):
         return self.email
