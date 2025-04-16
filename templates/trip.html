@@ -23,13 +23,45 @@
 </div>
 
 {% endif %}
-<div class="container mt-5" style="max-width: 50%;">
-    <h1 class="special-text text-center" style="color: #ba4395;">Book your trip bellow </h1>
-    <form method="post" action="{% url 'trip' trip.id %}">
-        {% csrf_token %}
-        {{ booking_form|crispy }}  
-        <button class="btn btn-primary"  style="background-color: #56c0e9; border: none; font-weight: bold;" type="submit">Continue to checkout</button>
-    </form>
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Left Column - Checkout Form -->
+        <div class="col-12">
+            <h2 class="mb-4">Checkout</h2>
+            <form method="post">
+                {% csrf_token %}
+                <!-- Customer Info -->
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="FullNmae" class="form-label">Full Name</label>
+                        <input name="FullName" type="text" class="form-control" id="FullName" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lastName" class="form-label">Email</label>
+                        <input name="email" type="email" class="form-control" placeholder="you@example.com" id="email" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="email" class="form-label">Number of travelers</label>
+                        <input name="numberOfTravelers" type="number" class="form-control" id="numberOfTravelers" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input name="phone" type="tel" class="form-control" id="phone" placeholder="+213 555 123 456" required>
+                    </div>
+                </div>
+                <br> <br>
+                <!-- Terms & Place Order -->
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="terms" required>
+                    <label class="form-check-label" for="terms">I agree to the terms & conditions</label>
+                </div>
+
+                <button class="btn btn-primary w-100 mt-4" type="submit">Place Order</button>
+            </form>
+        </div>
+    </div>
 </div>
+
 <br> <br>
 {% endblock %}
