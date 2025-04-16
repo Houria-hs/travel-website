@@ -5,7 +5,7 @@ from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.http import JsonResponse
 from django.contrib import messages
-from .forms import RegisterForm , BookingForm
+from .forms import RegisterForm 
 from .models import Destination , booking , Subscribe
 
 # Create your views here.
@@ -51,23 +51,25 @@ def trip(request, pk):
         return redirect('login')  
 
     trip = get_object_or_404(Destination, id=pk)  
-    
+
     if request.method == 'POST':
-        booking_form = BookingForm(request.POST)
-        if booking_form.is_valid():
-            booking = booking_form.save(commit=False)  
-            booking.selected_trip = trip.title 
-            booking.user = request.user  
-            booking.save()  
-            messages.success(request, 'Booking successful!')
-            return redirect('home')
-        else:
-            messages.error(request, 'Correct the errors below!')
+        full_name = request.POST.get('FullName')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        numberOfTravelers = request.POST.get('numberOfTravelers')
 
-    else:
-        booking_form = BookingForm()
-
-    return render(request, 'trip.html', {'trip': trip, 'booking_form': booking_form})   
+        Booking = booking() 
+        Booking.user_fullname = full_name
+        Booking.user_email = email
+        Booking.user_phone = phone
+        Booking.number_of_travelers = numberOfTravelers
+        Booking.selected_trip = trip.title
+        Booking.user = request.user 
+        Booking.save()
+        messages.success(request, 'your informations has been saved successfuly !')
+        return redirect('ThankYou')
+    
+    return render(request, 'trip.html', {'trip': trip})   
 
 def Newsletter_view(request):
     if request.method == 'POST':
@@ -87,3 +89,6 @@ def Newsletter_view(request):
             messages.success(request , 'Got it , thank you !')
     return render(request , 'home.html' , {})
 
+
+def ThankYou(request):
+    return render(request , 'ThankYou.html' , {})
