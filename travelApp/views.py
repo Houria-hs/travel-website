@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 from django.http import JsonResponse
 from django.contrib import messages
 from .forms import RegisterForm 
-from .models import Destination , booking , Subscribe
+from .models import Destination , booking , Subscribe , PromoCode
 
 # Create your views here.
 
@@ -67,7 +67,7 @@ def trip(request, pk):
         Booking.user = request.user 
         Booking.save()
         messages.success(request, 'your informations has been saved successfuly !')
-        return redirect('ThankYou')
+        return redirect('bookingSummary', trip_id=trip.id)
     
     return render(request, 'trip.html', {'trip': trip})   
 
@@ -89,6 +89,44 @@ def Newsletter_view(request):
             messages.success(request , 'Got it , thank you !')
     return render(request , 'home.html' , {})
 
-
 def ThankYou(request):
     return render(request , 'ThankYou.html' , {})
+
+def bookingSummary(request , trip_id):
+    trip = get_object_or_404(Destination, id=trip_id)
+    latest_booking = booking.objects.filter(selected_trip=trip).last()
+
+    if not latest_booking:
+        messages.error(request, "No booking found for this trip.")
+        return redirect('trip', trip_id=trip_id)
+    
+    numberOfTravelers = latest_booking.number_of_travelers
+    promoCodeInput = ''
+    if request.method =='POST':
+        promoCodeInput = request.POST.get('promo', '').strip()
+
+    subtotal = trip.price * numberOfTravelers
+    discount = 0
+    final_total = subtotal
+    promo_error = None
+
+    # Promo code logic
+    if promoCodeInput:
+        try:
+            promo = PromoCode.objects.get(promo_code__iexact=promoCodeInput, is_active=True)
+            discount = (promo.discount_percentage / 100) * subtotal
+            final_total = subtotal - discount
+        except PromoCode.DoesNotExist:
+            promo_error = "Invalid promo code"
+
+    context = {
+        'trip': trip,
+        'travelers': numberOfTravelers,
+        'subtotal': subtotal,
+        'discount': discount,
+        'total': final_total,
+        'promo_code': promoCodeInput,
+        'promo_error': promo_error,
+    }
+
+    return render(request, 'bookingSummary.html', context)
