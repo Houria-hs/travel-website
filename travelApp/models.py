@@ -5,11 +5,13 @@ from django.contrib.auth.models import User
 
 class Destination(models.Model):
     title = models.CharField(max_length=200)
-    price = models.TextField(max_length=20)
-    days = models.CharField(max_length=10)
-    people = models.CharField(max_length=10)
+    price_per_person = models.TextField(max_length=20)
+    days_and_nights = models.CharField(max_length=10)
+    max_people = models.CharField(max_length=10)
     from_date = models.CharField(max_length = 20 , default='')
     To_date = models.CharField(max_length = 20 , default='')
+    second_from_date = models.CharField(max_length = 20 , default='')
+    second_To_date = models.CharField(max_length = 20 , default='')
     description = models.CharField(max_length = 1000 , default='')
     image = models.ImageField(upload_to='destinations/')
 
