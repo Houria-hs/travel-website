@@ -42,3 +42,12 @@ class Subscribe(models.Model):
 
     def __str__(self):
         return self.email
+    
+
+class PromoCode(models.Model):
+    promo_code = models.CharField(max_length=20)
+    discount_percentage = models.IntegerField()
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.promo_code
