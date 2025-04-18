@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container py-5 mt-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card shadow-lg border-0 rounded-4 p-4">
+          <h3 class="text-center fw-bold mb-3" style="color: #ba4395;">💳 Payment Instructions</h3>
+          <p class="text-center text-muted">Please transfer the amount to the following account:</p>
+  
+          <ul class="list-group list-group-flush mb-4">
+            <li class="list-group-item"><strong>🔢 CCP:</strong> 12345678900 clé 97</li>
+            <li class="list-group-item"><strong>👤 Name:</strong> Agence XYZ</li>
+          </ul>
+  
+          <p class="text-center">After completing the transfer, kindly upload a screenshot as proof of payment below:</p>
+  
+          <form method="POST" enctype="multipart/form-data" class="mt-4">
+            {% csrf_token %}
+  
+            <div class="mb-3">
+              <label class="form-label">Full Name</label>
+              <input type="text" name="full_name" class="form-control rounded-3" required>
+            </div>
+  
+            <div class="mb-3">
+              <label class="form-label">Phone Number</label>
+              <input type="text" name="phone" class="form-control rounded-3" required>
+            </div>
+  
+            <div class="mb-3">
+              <label class="form-label">Trip Title</label>
+              <input type="text" name="trip" class="form-control rounded-3" required>
+            </div>
+  
+            <div class="mb-3">
+              <label class="form-label">Transfer Date</label>
+              <input type="date" name="transfer_date" class="form-control rounded-3" required>
+            </div>
+  
+            <div class="mb-4">
+              <label class="form-label">Payment Screenshot</label>
+              <input type="file" name="screenshot" accept="image/*" class="form-control rounded-3" required>
+            </div>
+  
+            <div class="d-grid">
+              <button type="submit" class="btn" style="background-color: #ba4395; color: white;">📤 Send Proof</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<br> <br>
+{% endblock %}
