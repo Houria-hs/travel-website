@@ -105,7 +105,7 @@ def bookingSummary(request , trip_id):
     if request.method =='POST':
         promoCodeInput = request.POST.get('promo', '').strip()
 
-    subtotal = float(trip.price )* numberOfTravelers
+    subtotal = float(trip.price_per_person )* numberOfTravelers
     discount = 0
     final_total = subtotal
     promo_error = None
