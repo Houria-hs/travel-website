@@ -56,11 +56,11 @@ class PromoCode(models.Model):
 
 class PayementProof(models.Model):
     full_name = models.CharField(max_length=100)
-    phone = models.ImageField(max_length=12)
+    phone = models.IntegerField(max_length=12)
     trip_title = models.CharField(max_length=100)
     transfer_date = models.DateField()
     screenshot = models.ImageField(upload_to="payment_proofs/")
     created_at = models.DateTimeField(auto_now_add=True)
-    
+
     def __str__(self):
         return self.full_name
