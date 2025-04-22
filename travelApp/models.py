@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 class Destination(models.Model):
     title = models.CharField(max_length=200)
     price_per_person = models.TextField(max_length=20)
-    days_and_nights = models.CharField(max_length=10)
-    max_people = models.CharField(max_length=10)
+    days_and_nights = models.CharField(max_length=20)
+    max_people = models.CharField(max_length=20)
     from_date = models.CharField(max_length = 20 , default='')
     To_date = models.CharField(max_length = 20 , default='')
     second_from_date = models.CharField(max_length = 20 , default='')
@@ -18,7 +18,6 @@ class Destination(models.Model):
     def __str__(self):
         return self.title
     
-
 class booking(models.Model):
     STATUS_CHOICES = [
         ('Pending', 'Pending'),
@@ -59,7 +58,7 @@ class PayementProof(models.Model):
     phone = models.IntegerField(max_length=12)
     trip_title = models.CharField(max_length=100)
     transfer_date = models.DateField()
-    screenshot = models.ImageField(upload_to="payment_proofs/")
+    screenshot = models.ImageField(upload_to="paymentProofs/")
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
