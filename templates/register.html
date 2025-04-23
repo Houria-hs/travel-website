@@ -9,20 +9,20 @@
         {% csrf_token %}
         <fieldset class="form-group">
             <legend class="text-center border-bottom pb-2 mb-4" style="font-size: 1.5rem; font-weight: bold; color: #56c0e9;">
-                Register
+                S’inscrire
             </legend>
             {{ form|crispy }}
         </fieldset>
         <div class="form-group text-center">
             <button type="submit" class="btn btn-primary w-100 py-2" style="font-size: 1rem; font-weight: 500; background-color: #56c0e9;">
-                Sign Up
+                S’inscrire
             </button>
         </div>
         <div class="border-top pt-3 mt-4 text-center">
             <small class="text-muted">
-                Already have an account? 
+                Vous avez déjà un compte ? 
                 <a class="ml-2 text-decoration-none" href="{% url 'login' %}" style="color: #ba4395;">
-                    Sign In
+                    Se connecter
                 </a>
             </small>
         </div>
