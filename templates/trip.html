@@ -21,30 +21,30 @@
             <!-- Price -->
             <div class="mb-3">
                 <span class="badge bg-success p-2 fs-6">{{ trip.price_per_person }} DA</span>
-                <small class="text-muted ms-2">per person</small>
+                <small class="text-muted ms-2">par personne</small>
             </div>
 
             <!-- Duration -->
             <div class="mb-2 d-flex align-items-center">
-                <i class="fas fa-clock  me-2"></i>
-                <strong class="me-1">Duration:</strong> {{ trip.days_and_nights }} days
+                <i class="fas fa-clock trip_icons  me-2"></i>
+                <strong class="me-1">Durée:</strong> {{ trip.days_and_nights }}
             </div>
 
             <!-- Max People -->
             <div class="mb-2 d-flex align-items-center">
-                <i class="fas fa-users  me-2"></i>
-                <strong class="me-1">Group size:</strong> Max {{ trip.max_people }} people
+                <i class="fas fa-users trip_icons  me-2"></i>
+                <strong class="me-1">Taille du groupe:</strong>{{ trip.max_people }}
             </div>
 
             <!-- Date Ranges -->
             <div class="mb-2">
                 <div class="d-flex align-items-center">
-                    <i class="fas fa-calendar-days  me-2"></i>
-                    <strong class="me-1">First Departure:</strong> {{ trip.from_date }} → {{ trip.To_date }}
+                    <i class="fas fa-calendar-days trip_icons me-2"></i>
+                    <strong class="me-1">Premier départ :</strong> {{ trip.from_date }} → {{ trip.To_date }}
                 </div>
                 <div class="d-flex align-items-center mt-1">
-                    <i class="fas fa-calendar-days  me-2"></i>
-                    <strong class="me-1">Second Departure:</strong> {{ trip.second_from_date }} → {{ trip.second_To_date }}
+                    <i class="fas fa-calendar-days trip_icons  me-2"></i>
+                    <strong class="me-1">Deuxième départ:</strong> {{ trip.second_from_date }} → {{ trip.second_To_date }}
                 </div>
             </div>
 
@@ -56,51 +56,61 @@
 {% endif %}
 
 
-
-<div class="container mt-5 d-flex justify-content-center">
-    <div class="row">
-        <div class="col-12">
-            <h2 style="color: #ba4395;" class="mb-4">Checkout</h2>
-            <form method="post">
-                {% csrf_token %}
-                <!-- Customer Info -->
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label for="FullNmae" class="form-label">Full Name</label>
-                        <input name="FullName" type="text" class="form-control" id="FullName" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="lastName" class="form-label">Email</label>
-                        <input name="email" type="email" class="form-control" placeholder="you@example.com" id="email" required>
-                    </div>
-                    <div class="col-12">
-                        <label for="email" class="form-label">Number of travelers</label>
-                        <input name="numberOfTravelers" type="number" class="form-control" id="numberOfTravelers" required>
-                    </div>
-                    <div class="col-12">
-                        <label for="phone" class="form-label">Phone</label>
-                        <input name="phone" type="tel" class="form-control" id="phone" placeholder="+213 555 123 456" required>
-                    </div>
+<div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="card shadow rounded-4 border-0">
+          <div class="card-body p-4">
+            <h2 class="text-center mb-4" style="color: #ba4395;">Formulaire de réservation</h2>
+  
+            <form method="POST" novalidate>
+              {% csrf_token %}
+              <div class="row g-3">
+  
+                <!-- Nom complet -->
+                <div class="col-md-6">
+                  <label for="FullName" class="form-label">Nom complet</label>
+                  <input name="FullName" type="text" class="form-control" id="FullName" required>
                 </div>
-                <br> <br>
-                <!-- Terms & Place Order -->
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="terms" required>
-                    <label class="form-check-label" for="terms">I agree to the terms & conditions</label>
+  
+                <!-- Adresse e-mail -->
+                <div class="col-md-6">
+                  <label for="email" class="form-label">Adresse e-mail</label>
+                  <input name="email" type="email" class="form-control" placeholder="toi@exemple.com" id="email" required>
                 </div>
-
-                <button  class="btn btn-primary mt-4" type="submit">Place Order</button>
+  
+                <!-- Nombre de voyageurs -->
+                <div class="col-md-6">
+                  <label for="numberOfTravelers" class="form-label">Nombre de voyageurs</label>
+                  <input name="numberOfTravelers" type="number" class="form-control" id="numberOfTravelers" required>
+                </div>
+  
+                <!-- Téléphone -->
+                <div class="col-md-6">
+                  <label for="phone" class="form-label">Téléphone</label>
+                  <input name="phone" type="tel" class="form-control" placeholder="+213 555 123 456" id="phone" required>
+                </div>
+  
+              </div>
+  
+              <button class="btn Réserver btn-primary w-100 mt-4" type="submit">
+                Valider la réservation
+              </button>
             </form>
+  
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+  
 
 <br> <br>
 <style>
-    i{
+    .trip_icons{
         color: #56c0e9 !important;
     }
-    .btn{
+    .Réserver{
     background-color: #56c0e9 !important;
     border: none !important;
     padding: .5rem 1REM !important;
