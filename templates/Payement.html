@@ -8,46 +8,46 @@
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="card shadow-lg border-0 rounded-4 p-4">
-          <h3 class="text-center fw-bold mb-3" style="color: #ba4395;">💳 Payment Instructions</h3>
-          <p class="text-center text-muted">Please transfer the amount to the following account:</p>
+          <h3 class="text-center fw-bold mb-3" style="color: #ba4395;">💳 Instructions de paiement</h3>
+          <p class="text-center text-muted">Veuillez transférer le montant sur le compte suivant :</p>
   
           <ul class="list-group list-group-flush mb-4">
-            <li class="list-group-item"><strong>🔢 CCP:</strong> 12345678900 clé 97</li>
-            <li class="list-group-item"><strong>👤 Name:</strong> Agence XYZ</li>
+            <li class="list-group-item"><strong> CCP:</strong> 12345678900 clé 97</li>
+            <li class="list-group-item"><strong> Nom :</strong> Agence XYZ</li>
           </ul>
   
-          <p class="text-center">After completing the transfer, kindly upload a screenshot as proof of payment below:</p>
+          <p class="text-center">Après avoir effectué le virement, veuillez téléverser une capture d’écran comme preuve de paiement ci-dessous :</p>
   
           <form method="POST" enctype="multipart/form-data" class="mt-4">
             {% csrf_token %}
   
             <div class="mb-3">
-              <label class="form-label">Full Name</label>
+              <label class="form-label">Nom complet</label>
               <input type="text" name="full_name" class="form-control rounded-3" required>
             </div>
   
             <div class="mb-3">
-              <label class="form-label">Phone Number</label>
+              <label class="form-label">Numéro de téléphone</label>
               <input type="text" name="phone" class="form-control rounded-3" required>
             </div>
   
             <div class="mb-3">
-              <label class="form-label">Trip Title</label>
+              <label class="form-label">Titre du voyage</label>
               <input type="text" name="trip" class="form-control rounded-3" required>
             </div>
   
             <div class="mb-3">
-              <label class="form-label">Transfer Date</label>
+              <label class="form-label">Date du virement</label>
               <input type="date" name="transfer_date" class="form-control rounded-3" required>
             </div>
   
             <div class="mb-4">
-              <label class="form-label">Payment Screenshot</label>
-              <input type="file" name="screenshot" accept="image/*" class="form-control rounded-3" required>
+              <label class="form-label"> Capture d’écran du paiement</label>
+              <input type="file" name="screenshot" class="form-control rounded-3" required>
             </div>
   
             <div class="d-grid">
-              <button type="submit" class="btn" style="background-color: #ba4395; color: white;">📤 Send Proof</button>
+              <button type="submit" class="btn" style="background-color: #ba4395; color: white;">Envoyer</button>
             </div>
           </form>
         </div>
