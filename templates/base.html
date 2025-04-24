@@ -18,43 +18,43 @@
         <div class="container-fluid ">
             <nav class="navbar navbar-expand-lg  py-3" style="background-color: var(--primary-color);">
                 <div class="container">
-                    <a class="navbar-brand fw-bold" href="#" style="color: #ba4395;">
-                    J&D
-                    </a>
+                    <img src="{% static '../static/images/jud&jurryLogo.png' %}" alt="">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                         <ul class="navbar-nav gap-3">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="{% url 'home' %}">Home</a>
+                            <li class="nav-item fw-bold">
+                                <a style="color: #ba4395;" class="nav-link active" href="{% url 'home' %}">Accueil</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link " href="#">About</a>
+                            <li class="nav-item fw-bold">
+                                <a class="nav-link " href="#">À propos</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item fw-bold">
                                 <a class="nav-link " href="#">Services</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item fw-bold">
                                 <a class="nav-link " href="#">Destinations</a>
                             </li>
                             {% if user.is_authenticated %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'logout' %}">logout</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="btn btn-primary px-4" href="{% url 'Register' %}" style="background-color: #56c0e9; border: none;">Sign Up</a>
+                            <li class="nav-item fw-bold">
+                                <a style="color: #56c0e9;" class="nav-link " href="{% url 'logout' %}">Déconnexion</a>
                             </li>
                             {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link " href="{% url 'login' %}">Login</a>
+                            <li class="nav-item fw-bold">
+                                <a class="nav-link " href="{% url 'login' %}">Connexion</a>
                             </li>
                             <li class="nav-item">
-                                <a class="btn btn-primary px-4" href="{% url 'Register' %}" style="background-color: #56c0e9; border: none;">Sign Up</a>
+                                <a class="btn btn-primary px-4" href="{% url 'Register' %}" style="background-color: #56c0e9; border: none;"> Inscription</a>
                             </li>
                             {% endif %}
                             <li class="nav-item d-flex align-items-center">
-                                <i id="light" class="fa-solid fa-moon"></i>
+                                <a  href="https://wa.me/213770283335"  target="_blank"  class="btn">
+                                    <i class="fa-brands fa-whatsapp" style="color: green; font-size: xx-large;"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item d-flex align-items-center">
+                                <i id="light" class="fa-solid fa-moon" style="font-size: xx-large;"></i>
                             </li>
                         </ul>
                     </div>
@@ -64,8 +64,9 @@
     </section>
     {% if messages %}
     {% for message in messages %} 
-    <div class="alert alert-primary text-center  animate__animated animate__fadeIn" role="alert">
+    <div class="alert alert-primary text-center alert-dismissible  animate__animated animate__fadeIn" role="alert">
         {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     {% endfor %}
 {% endif %}
@@ -76,52 +77,61 @@
     <!-- footer -->
 
     <section class="footer-section py-5" style="background-color: var(--primary-color);">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row d-flex flex-wrap justify-content-center">
-                <div class="card mx-2 mb-3" style="max-width: 15rem; border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <div class="card footer-cards mx-2 mb-3 logo-card" style=" border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                     <div class="card-body text-center">
-                        <h5 class="card-title" style="color: #56c0e9; font-weight: bold;">Jud and Jurry</h5>
-                        <p class="card-text" style="color: var(--third-color);">Book your trip in minutes and get full control for much longer.</p>
+                        <img src="{% static '../static/images/jud&jurryLogo.png' %}" alt="">
+                        <h5 class="card-title" style="color: #56c0e9; font-weight: bold;">Jud & Jurry . We plan , You wonder</h5>
                     </div>
                 </div>
-                <div class="card mx-2 mb-3" style="max-width: 13rem; border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <div class="card footer-cards mx-2 mb-3" style=" border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                     <div class="card-body">
                         <h5 class="card-title" style="color: #56c0e9; font-weight: bold;">Links</h5>
                         <ul class="list-unstyled">
-                            <li><a href="#" style="text-decoration: none; ">Home</a></li>
-                            <li><a href="#" style="text-decoration: none; ">About</a></li>
+                            <li><a href="#" style="text-decoration: none; ">Accueil</a></li>
+                            <li><a href="#" style="text-decoration: none; ">A propos</a></li>
                             <li><a href="#" style="text-decoration: none; ">Services</a></li>
                             <li><a href="#" style="text-decoration: none; ">Destinations</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="card mx-2 mb-3" style="max-width: 24rem; border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <div class="card footer-cards mx-2 mb-3" style=" border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                     <div class="card-body">
                         <h5 class="card-title" style="color: #56c0e9; font-weight: bold;">Contact</h5>
                         <ul class="list-unstyled">
-                            <li><a href="tel:+213780372517" style="text-decoration: none;">Phone: +213-780-37-25-17</a></li>
-                            <li><a href="mailto:Judandjurry.tourism@gmail.com" style="text-decoration: none;">Email: Judandjurry.tourism@gmail.com</a></li>
-                            <li><span style="color: #757688;">Location: Cité 11 décembre 1960 Boumerdes</span></li>
+                            <li>
+                                <i style="color: #ba4395;" class="fa-solid fa-phone  m-1"></i>
+                                <a href="tel:+213780372517" style="text-decoration: none;">+213-780-37-25-17</a>
+                            </li>
+                            <li>
+                                <i style="color: #ba4395;" class="fa-solid fa-envelope  m-1"></i>
+                                <a href="mailto:Judandjurry.tourism@gmail.com" style="text-decoration: none;">Judandjurry.tourism@gmail.com</a>
+                            </li>
+                            <li>
+                                <i style="color: #ba4395;" class="fa-solid fa-location-dot m-1"></i>
+                                <span style="color: #757688;">Cité 11 décembre 1960 Boumerdes</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
-                <div class="card mx-2 mb-3" style="max-width: 15rem; border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <div class="card footer-cards mx-2 mb-3" style=" border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                     <div class="card-body">
                         <h5 class="card-title" style="color: #56c0e9; font-weight: bold;">Social Media</h5>
                         <ul class="list-unstyled">
                             <li><a href="#" style="text-decoration: none; ">
                                 <span>
-                                    <i class="fa-brands fa-instagram m-2" style="color: #ba4395;"></i>
-                                    <span> judandjurry </span>
+                                    <i class="fa-brands fa-square-instagram m-1" style="color: #ba4395;"></i>
+                                    <span> judanddjurry.tourism </span>
                                 </span>
                             </a></li>
                             <li><a href="#" style="text-decoration: none; ">
-                                <i class="fa-brands fa-facebook m-2" style="color: #ba4395;"></i>
-                            <span> judandjurry </span>
+                                <i class="fa-brands fa-facebook m-1" style="color: #ba4395;"></i>
+                            <span> judanddjurry.tourism  </span>
                             </a></li>
-                            <li><a href="#" style="text-decoration: none;">
-                                <i class="fa-brands fa-linkedin m-2" style="color: #ba4395;"></i>
-                                <span> judandjurry </span>
+                            <li><a href="#" style="text-decoration: none;" >
+                                <i class="fa-brands fa-twitter" style="color: #ba4395;"></i>
+                                <span> judanddjurry.tourism  </span>
                             </a></li>
                         </ul>
                     </div>
@@ -166,10 +176,27 @@
 .nav-link {
     color: var(--secondary-color);
 }
-i{
-    font-size: x-large;
+.nav-item{
+    font-size: larger ;
 }
-
+a{
+    color: var(--third-color);
+}
+.footer-cards{
+    width: 25%;
+}
+.logo-card{
+    width: 20%;
+}
+@media only screen and (max-width: 576px) {
+    .footer-cards{
+    width: 80%;
+}
+}
+.alert {
+  margin-bottom: 0 !important;
+  overflow: hidden;
+}
 
 </style>
 
