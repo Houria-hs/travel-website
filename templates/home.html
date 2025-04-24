@@ -7,12 +7,12 @@
         <div class="row align-items-center">
             <!-- Left Side Text -->
             <div class="col-lg-6 mb-4 mb-lg-0">
-                <h3 class="special-text" style="color: #ba4395;">Welcome to Jud & Jurry Travel</h3>
-                <h1 class="fw-bold" style="color: var(--secondary-color); font-size: 4REM;">Travel, enjoy and live.</h1>
+                <h3 class="special-text" style="color: #ba4395;">Bienvenue chez Jud & Jurry Travel</h3>
+                <h1 class="fw-bold" style="color: var(--secondary-color); font-size: 4REM;">Voyagez, profitez et vivez.</h1>
                 <p style="color: var(--third-color); max-width: 500px;">
-                    Experience unforgettable journeys with us! Explore breathtaking destinations and immerse yourself in adventure. Your dream trip starts here!
+                    Vivez des voyages inoubliables avec nous ! Explorez des destinations à couper le souffle et plongez dans l’aventure. Votre voyage de rêve commence ici !
                 </p>
-                <a href="#" class="btn btn-primary px-4 py-2" style="background-color: #56c0e9; border: none; font-weight: bold;">Book Now</a>
+                <a href="#" class="btn btn-primary px-4 py-2" style="background-color: #56c0e9; border: none; font-weight: bold;">Réserver maintenant</a>
             </div>
             <!-- Right Side Image -->
             <div class="col-lg-6 text-center">
@@ -23,16 +23,35 @@
     </div>
 </section>
 
-<section class="services-section text-center py-5" style="background-color: var(--primary-color);">
+<section id="About" class="About-section py-5"style="background-color: var(--primary-color );">
+    <div class="container">
+        <div class="card mb-3  border-0 shadow-lg rounded-4">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{% static '../static/images/about.jpg' %}" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title" style="color: #ba4395;">À propos de nous</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <a class="btn btn-primary" href="">Abonnez-vous</a>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="Services" class="services-section text-center py-5" style="background-color: var(--primary-color);">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 mb-4">
-                <h6 style="color: #ba4395; font-weight: bold;">Services</h6>
-                <h2 style="color: #56c0e9; font-size: 2.5rem;">We Offer the Best Services</h2>
+                <h5 style="color: #ba4395; font-weight: bold;">Services</h5>
+                <h2 style="color: #56c0e9; font-size: 2.5rem;">Nous offrons les meilleurs services</h2>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6 mb-4">
+            <div class="col-lg-4 col-md-6 mb-4 px-4">
                 <div class="card border-0 shadow-lg rounded-4" style="padding: 1REM;">
                     <img src="{% static 'images/plane.png' %}" class="card-img-top mx-auto mt-3" style="width: 80px; height: 80px;" alt="Best Flights">
                     <div class="card-body">
@@ -41,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 mb-4">
+            <div class="col-lg-4 col-md-6 mb-4 px-4">
                 <div class="card border-0 shadow-lg rounded-4" style="padding: 1REM;">
                     <img src="{% static 'images/microphone.png' %}" class="card-img-top mx-auto mt-3" style="width: 80px; height: 80px;" alt="Local Events">
                     <div class="card-body">
@@ -50,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-12 mb-4">
+            <div class="col-lg-4 col-md-12 mb-4 px-4">
                 <div class="card border-0 shadow-lg rounded-4" style="padding: 1REM;">
                     <img src="{% static 'images/adjust.png' %}" class="card-img-top mx-auto mt-3" style="width: 80px; height: 80px;" alt="Customization" >
                     <div class="card-body">
@@ -63,19 +82,19 @@
     </div>
 </section>
 
-<section class="destinations-section  py-5"  style="background-color: var(--primary-color);" >
+<section id="Destinations" class="destinations-section  py-5"  style="background-color: var(--primary-color);" >
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-12 mb-4">
-                <h6 style="color: #ba4395; font-weight: bold;">Destinations</h6>
-                <h2 style="color: #56c0e9; font-size: 2.5rem;">Top Selling</h2>
+                <h5 style="color: #ba4395; font-weight: bold;">Destinations</h5>
+                <h2 style="color: #56c0e9; font-size: 2.5rem;">Meilleures ventes</h2>
             </div>
         </div>
         <div class="row">
             {% if Destinations %}
                 {% for destination in Destinations %}
                 
-            <div class="col-lg-4 col-md-6 mb-4 ">
+            <div class="col-lg-4 col-md-6 mb-4 px-4">
                 <div class="card border-0 shadow-lg rounded-4">
                     <img  src="{{ destination.image.url }}" alt="{{ destination.title }}" class="card-img-top rounded-top-4" style=" height: 20rem;">
                     <div class="card-body">
@@ -85,7 +104,7 @@
                             <h5 class="card-title" style="color: #56c0e9;"> {{ destination.price_per_person }} DA</h5>
                         </div>
                         <div class="container">
-                            <a href="{% url 'trip' destination.id %}" class="btn btn-primary px-4 py-2 mt-2" style="background-color: #56c0e9; border: none; font-weight: bold;">More info</a>
+                            <a href="{% url 'trip' destination.id %}" class="btn btn-primary px-4 py-2 mt-2">Plus d'info</a>
                         </div>
                     </div>
                 </div>
@@ -96,65 +115,23 @@
     </div>
 </section>
 
-<section class="newsletter-section py-5" style="background-color: var(--primary-color);">
-    <div class="container" style="background-color: white; border-radius: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    width: 70%;">
+<section  class="newsletter-section py-5" style="background-color: var(--primary-color);">
+    <div class="container newsletter-container" >
         <div class="row p-5 d-flex flex-column align-items-center">
             <div class="col-12 mb-4 text-center">
                 <img class="mb-3" src="{% static '../static/images/newsletter.png' %}" alt="">
-                <h4 style="color: #56c0e9; font-weight: bold;">Subscribe to get information, latest news and other interesting offers about us</h4>
+                <h4 style="color: #56c0e9; font-weight: bold;">Abonnez-vous pour recevoir des informations, les dernières actualités et d'autres offres intéressantes sur nous</h4>
             </div>
             <div class="col-12 col-md-8 col-lg-6">
                 <form action="{% url 'Newsletter_view' %}" method="POST">
                     {% csrf_token %}
                     <div class="input-group mb-3">
-                        <input type="email" name="email" class="form-control" placeholder="Enter your email address" aria-label="Email address" aria-describedby="button-addon2" style="border: 1px solid #56c0e9; border-radius: 25px 0 0 25px; padding: 12px;" required>
-                        <button type="submit" class="btn btn-primary px-4 py-2" style="background-color: #56c0e9; border: none; font-weight: bold; color: #fff; border-radius: 0 25px 25px 0;" id="button-addon2">Subscribe</button>
+                        <input type="email" name="email" class="form-control" placeholder="Entrez votre adresse e-mail" aria-label="Email address" aria-describedby="button-addon2" style="border: 1px solid #56c0e9; border-radius: 25px 0 0 25px; padding: 12px;" required>
+                        <button type="submit" class="btn btn-primary px-3  py-2" style="background-color: #56c0e9; border: none; font-weight: bold; color: #fff; border-radius: 0 25px 25px 0;" id="button-addon2"> S’abonner</button>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
-</section>
-
-<section class="contact-section py-5" style="background-color: var(--primary-color);">
-    <div class="container">
-        <div class="row justify-content-center text-center">
-            <div class="col-12 mb-4">
-                <h6 style="color: #ba4395; font-weight: bold;">Contact Us </h6>
-                <h2 style="color: #56c0e9; font-size: 2.5rem;">Stay In Touch</h2>
-            </div>
-        </div>
-    </div>
-    <div class="container" style="background-color: white; border-radius: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    width: 50%; padding: 2REM;">
-    <form>
-    <div class="row g-3">
-        <div class="col-md-6">
-            <label for="firstName" class="form-label">First Name</label>
-            <input type="text" class="form-control" id="firstName" required>
-        </div>
-        <div class="col-md-6">
-            <label for="lastName" class="form-label">Last Name</label>
-            <input type="text" class="form-control" id="lastName" required>
-        </div>
-        <div class="col-12">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
-        </div>
-        <div class="col-12">
-            <label for="phone" class="form-label">Phone</label>
-            <input type="tel" class="form-control" id="phone" placeholder="+213 555 123 456" required>
-        </div>
-        <div class="col-12">
-            <label for="Message" class="form-label">Your Message</label>
-            <textarea class="form-control" name="message" id=""></textarea>
-        </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary px-4 py-2" style="background-color: #56c0e9; border: none; font-weight: bold; color: #fff; " id="button-addon2">Send</button>
-        </div>
-    </div>
-    </form>
     </div>
 </section>
 
@@ -170,6 +147,9 @@
     --secondary-color : #222 ;
     --third-color:#757688 ;
 }
+.btn-primary{
+    background-color: #56c0e9 !important; border: none !important; font-weight: bold;
+}
     .btn-primary:hover {
     background-color: #ba4395 !important;
 }
@@ -183,6 +163,17 @@
 }
 p{
     color: var(--third-color);
+}
+.newsletter-container{
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 70% !important;
+}
+@media only screen and (max-width: 576px) {
+    .newsletter-container{
+    width: 90% !important;
+}
 }
 </style>
 
