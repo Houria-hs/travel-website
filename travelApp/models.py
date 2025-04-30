@@ -5,24 +5,31 @@ from django.contrib.auth.models import User
 
 class Destination(models.Model):
     title = models.CharField(max_length=200)
-    price_per_person = models.TextField(max_length=20)
+    subtitle = models.CharField(max_length=200 , blank=True, null=True)
+    price_per_person = models.CharField(max_length=20)
     days_and_nights = models.CharField(max_length=20)
     max_people = models.CharField(max_length=20)
     from_date = models.CharField(max_length = 20 , default='')
     To_date = models.CharField(max_length = 20 , default='')
     second_from_date = models.CharField(max_length = 20 , default='')
     second_To_date = models.CharField(max_length = 20 , default='')
-    description = models.CharField(max_length = 1000 , default='')
+    description = models.TextField(max_length = 1000 , default='')
     image = models.ImageField(upload_to='destinations/')
+    tarif = models.TextField(max_length=1000 , blank=True, null=True)
+    has_multiple_tarifs = models.BooleanField(default=False) 
+    price_per_person = models.FloatField(blank=True, null=True) 
+
 
     def __str__(self):
         return self.title
     
 class Tarif(models.Model):
     ROOM_CHOICES = [
-        ('standard', 'Standard'),
-        ('deluxe', 'Deluxe'),
-        ('suite', 'Suite'),
+        ('Double', 'Double'),
+        ('Single', 'Single'),
+        ('Enfant', 'Enfant'),
+        ('CHD sans-lit', 'CHD sans-lit'),
+        ('CHD avec-lit', 'CHD avec-lit'),
     ]
 
     destination = models.ForeignKey(Destination, related_name='tarifs', on_delete=models.CASCADE)
