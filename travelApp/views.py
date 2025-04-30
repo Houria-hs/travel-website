@@ -5,8 +5,8 @@ from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.http import JsonResponse
 from django.contrib import messages
-from .forms import RegisterForm 
-from .models import Destination , booking , Subscribe , PromoCode
+from .forms import RegisterForm  , CustomLoginForm
+from .models import Destination , booking , Subscribe , PromoCode , PayementProof , Tarif
 
 # Create your views here.
 
@@ -29,15 +29,15 @@ def Register(request):
 
 def login_view(request):
     if request.method == 'POST':
-        loginForm = AuthenticationForm(data = request.POST)
+        loginForm = CustomLoginForm(data = request.POST)
         if loginForm.is_valid():
             user = loginForm.get_user()
             login(request , user)
             username = loginForm.cleaned_data.get('username')
-            messages.success(request , f'You are logged in {username}!')
+            messages.success(request , f'Vous êtes connecté(e), {username}!')
             return redirect('home')
     else:
-        loginForm= AuthenticationForm()
+        loginForm= CustomLoginForm()
     return render(request , 'login.html' , {'loginForm':loginForm})
 
 def logout_view(request):
@@ -51,12 +51,15 @@ def trip(request, pk):
         return redirect('login')  
 
     trip = get_object_or_404(Destination, id=pk)  
-
+    tarifs = Tarif.objects.filter(destination=trip)
+    
     if request.method == 'POST':
         full_name = request.POST.get('FullName')
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         numberOfTravelers = request.POST.get('numberOfTravelers')
+        room_type = request.POST.get('roomType')
+        tarif = Tarif.objects.get(destination=trip, room_type=room_type)
 
         Booking = booking() 
         Booking.user_fullname = full_name
@@ -65,11 +68,13 @@ def trip(request, pk):
         Booking.number_of_travelers = numberOfTravelers
         Booking.selected_trip = trip.title
         Booking.user = request.user 
+        Booking.room_type = room_type
+        Booking.room_price = tarif.price
         Booking.save()
         messages.success(request, 'your informations has been saved successfuly !')
         return redirect('bookingSummary', trip_id=trip.id)
     
-    return render(request, 'trip.html', {'trip': trip})   
+    return render(request, 'trip.html', {'trip': trip  , 'tarifs':tarifs})   
 
 def Newsletter_view(request):
     if request.method == 'POST':
@@ -97,7 +102,7 @@ def bookingSummary(request , trip_id):
     latest_booking = booking.objects.filter(selected_trip=trip).last()
 
     if not latest_booking:
-        messages.error(request, "No booking found for this trip.")
+        messages.error(request, "Aucune réservation trouvée.")
         return redirect('trip', trip_id=trip_id)
     
     numberOfTravelers = latest_booking.number_of_travelers
@@ -130,3 +135,25 @@ def bookingSummary(request , trip_id):
     }
 
     return render(request, 'bookingSummary.html', context)
+
+
+
+def payement_view(request):
+    if request.method =='POST':
+        fullName = request.POST.get('full_name')
+        phoneNumber = request.POST.get('phone')
+        tripTitle = request.POST.get('trip')
+        TransferDate = request.POST.get('transfer_date')
+        Screenshot = request.POST.get('screenshot')
+
+        Payement_Proof = PayementProof()
+        Payement_Proof.full_name = fullName
+        Payement_Proof.phone = phoneNumber
+        Payement_Proof.trip_title = tripTitle
+        Payement_Proof.transfer_date = TransferDate
+        Payement_Proof.screenshot = Screenshot
+        Payement_Proof.save()
+        messages.success(request, 'Your proof has been sent , thank you !')
+        return redirect('ThankYou')
+
+    return render(request , 'Payement.html' , {})
