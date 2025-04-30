@@ -18,6 +18,20 @@ class Destination(models.Model):
     def __str__(self):
         return self.title
     
+class Tarif(models.Model):
+    ROOM_CHOICES = [
+        ('standard', 'Standard'),
+        ('deluxe', 'Deluxe'),
+        ('suite', 'Suite'),
+    ]
+
+    destination = models.ForeignKey(Destination, related_name='tarifs', on_delete=models.CASCADE)
+    room_type = models.CharField(max_length=20, choices=ROOM_CHOICES)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.destination.title} - {self.room_type.capitalize()} Room"
+
 class booking(models.Model):
     STATUS_CHOICES = [
         ('Pending', 'Pending'),
@@ -33,6 +47,10 @@ class booking(models.Model):
     user_email = models.EmailField(max_length=200 , blank=True)
     selected_trip = models.CharField(max_length=100)
     number_of_travelers = models.IntegerField()
+    
+    # NEW FIELDS:
+    room_type = models.CharField(max_length=20, blank=True)
+    room_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def __str__(self):
         return self.user_fullname
@@ -55,7 +73,7 @@ class PromoCode(models.Model):
 
 class PayementProof(models.Model):
     full_name = models.CharField(max_length=100)
-    phone = models.IntegerField(max_length=12)
+    phone = models.IntegerField()
     trip_title = models.CharField(max_length=100)
     transfer_date = models.DateField()
     screenshot = models.ImageField(upload_to="paymentProofs/")
