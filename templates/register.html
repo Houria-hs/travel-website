@@ -4,31 +4,46 @@
 {% load crispy_forms_tags %}
 
 {% block content%}
-<div class="container py-5 d-flex justify-content-center">
-    <form action="{% url 'Register' %}" method="POST" class="p-4 rounded shadow-lg" style="width: 100%; max-width: 500px;">
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="text-center border-bottom pb-2 mb-4" style="font-size: 1.5rem; font-weight: bold; color: #56c0e9;">
-                S’inscrire
-            </legend>
-            {{ form|crispy }}
-        </fieldset>
-        <div class="form-group text-center">
-            <button type="submit" class="btn btn-primary w-100 py-2" style="font-size: 1rem; font-weight: 500; background-color: #56c0e9;">
-                S’inscrire
-            </button>
-        </div>
-        <div class="border-top pt-3 mt-4 text-center">
-            <small class="text-muted">
-                Vous avez déjà un compte ? 
-                <a class="ml-2 text-decoration-none" href="{% url 'login' %}" style="color: #ba4395;">
-                    Se connecter
-                </a>
-            </small>
-        </div>
-    </form>
-</div>
+<section style="background-color: var(--primary-color);">
+    <div class="container py-5 d-flex justify-content-center">
+        <form action="{% url 'Register' %}" method="POST" class="p-4 rounded shadow-lg" style="width: 100%; max-width: 500px;">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="text-center border-bottom pb-2 mb-4" style="font-size: 1.5rem; font-weight: bold; color: #56c0e9;">
+                    S’inscrire
+                </legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary w-100 py-2" style="font-size: 1rem; font-weight: 500; background-color: #56c0e9;">
+                    S’inscrire
+                </button>
+            </div>
+            <div class="border-top pt-3 mt-4 text-center">
+                <small class="text-muted">
+                    Vous avez déjà un compte ? 
+                    <a class="ml-2 text-decoration-none" href="{% url 'login' %}" style="color: #ba4395;">
+                        Se connecter
+                    </a>
+                </small>
+            </div>
+        </form>
+    </div>
+</section>
 
+<style>
+
+.dark-mode{
+    --primary-color : #222;
+    --secondary-color : #f8f9fa ;
+    --third-color:#edeeee ;
+}
+    :root{
+    --primary-color : #f8f9fa;
+    --secondary-color : #222 ;
+    --third-color:#757688 ;
+}
+</style>
 
 
 {% endblock %}

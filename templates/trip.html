@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
+<section style="background-color: var(--primary-color);">
 {% if trip %}
 <div class="container py-5 d-flex justify-content-center">
     <div class="card shadow-lg border-0 flex-column flex-md-row" style="width: 100%; max-width: 1100px; border-radius: 20px; overflow: hidden;">
@@ -17,44 +17,48 @@
         <div class="col-md-7 p-4" style="background-color: #fefefe;">
             <!-- Title -->
             <h2 class="fw-bold mb-3" style="color: #ba4395;">{{ trip.title }}</h2>
+            <h6 class="fw-bold mb-3" style="color: #56c0e9;"> {{ trip.subtitle }} </h6>
             
+
+            {% if trip.price_per_person %}
             <!-- Price -->
             <div class="mb-3">
                 <span class="badge bg-success p-2 fs-6">{{ trip.price_per_person }} DA</span>
                 <small class="text-muted ms-2">par personne</small>
             </div>
-
+            {% endif %}
             <!-- Duration -->
+            {% if trip.days_and_nights %}
             <div class="mb-2 d-flex align-items-center">
-                <i class="fas fa-clock trip_icons  me-2"></i>
                 <strong class="me-1">Durée:</strong> {{ trip.days_and_nights }}
             </div>
-
+            {% else %}
             <!-- Max People -->
             <div class="mb-2 d-flex align-items-center">
-                <i class="fas fa-users trip_icons  me-2"></i>
                 <strong class="me-1">Taille du groupe:</strong>{{ trip.max_people }}
             </div>
-
+            {% endif %}
             <!-- Date Ranges -->
             <div class="mb-2">
                 <div class="d-flex align-items-center">
-                    <i class="fas fa-calendar-days trip_icons me-2"></i>
                     <strong class="me-1">Premier départ :</strong> {{ trip.from_date }} → {{ trip.To_date }}
                 </div>
                 <div class="d-flex align-items-center mt-1">
-                    <i class="fas fa-calendar-days trip_icons  me-2"></i>
                     <strong class="me-1">Deuxième départ:</strong> {{ trip.second_from_date }} → {{ trip.second_To_date }}
                 </div>
             </div>
-
+            {% if trip.tarif %}
+            <div class="mb-2">
+              <strong class="me-1">Tarifs:</strong>
+              <p>{{ trip.tarif|linebreaksbr }}</p>
+            </div>
+            {% endif %}
             <!-- Description -->
-            <p class="mt-4 text-muted" style="line-height: 1.7;">{{ trip.description }}</p>
+            <p class="mt-4 text-muted" style="line-height: 1.7;"><b>{{ trip.description|linebreaksbr }}</b></p>
         </div>
     </div>
 </div>
 {% endif %}
-
 
 <div class="container py-5">
     <div class="row justify-content-center">
@@ -92,8 +96,21 @@
                 </div>
   
               </div>
+              <!-- Type de chambre -->
+              {% if tarifs %}
+              <div class="col-12">
+                <label for="roomType" class="form-label">Type de chambre</label>
+                <select name="roomType" id="roomType" class="form-select" required>
+                  {% for tarif in tarifs %}
+                    <option value="{{ tarif.room_type }}">
+                      {{ tarif.room_type }} - {{ tarif.price }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+              {% endif %}
   
-              <button class="btn Réserver btn-primary w-100 mt-4" type="submit">
+              <button class="btn  btn-primary w-100 mt-4" type="submit">
                 Valider la réservation
               </button>
             </form>
@@ -102,19 +119,27 @@
         </div>
       </div>
     </div>
-  </div>
-  
-
+</div>
 <br> <br>
+</section>
 <style>
-    .trip_icons{
-        color: #56c0e9 !important;
-    }
-    .Réserver{
-    background-color: #56c0e9 !important;
-    border: none !important;
-    padding: .5rem 1REM !important;
-    }
+      .dark-mode{
+    --primary-color : #222;
+    --secondary-color : #f8f9fa ;
+    --third-color:#edeeee ;
+}
+    :root{
+    --primary-color : #f8f9fa;
+    --secondary-color : #222 ;
+    --third-color:#757688 ;
+}
+.btn-primary{
+    background-color: #56c0e9 !important; border: none !important; font-weight: bold;
+}
+.btn-primary:hover {
+    background-color: #ba4395 !important;
+}
+
 </style>
 {% endblock %}
 

@@ -28,13 +28,17 @@
         <div class="card mb-3  border-0 shadow-lg rounded-4">
             <div class="row g-0">
               <div class="col-md-4">
-                <img src="{% static '../static/images/about.jpg' %}" class="img-fluid rounded-start" alt="...">
+                <img src="{% static '../static/images/about.jpg' %}" class="img-fluid rounded-start" style="height: 100%;">
               </div>
               <div class="col-md-8">
                 <div class="card-body">
                   <h5 class="card-title" style="color: #ba4395;">À propos de nous</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <a class="btn btn-primary" href="">Abonnez-vous</a>
+                  <p class="card-text" style="color: #757688;">Bienvenue chez Jud and jurry, votre partenaire de confiance pour vivre des expériences de voyage inoubliables. Depuis notre création, nous avons pour mission d’offrir à nos clients des séjours bien organisés, authentiques et adaptés à leurs envies.
+
+                    Que vous rêviez de plages exotiques, de découvertes culturelles, d’aventures nature ou de voyages en famille, notre équipe passionnée met tout en œuvre pour vous proposer des circuits soigneusement sélectionnés, au meilleur rapport qualité-prix. Grâce à notre réseau de partenaires fiables à travers le monde, nous vous garantissons un service de qualité, une assistance sur mesure et une tranquillité d’esprit totale.
+                    
+                    Rejoignez notre communauté de voyageurs satisfaits et laissez-nous transformer vos rêves d’évasion en réalité. Avec [Nom de l’agence], voyagez autrement, voyagez sereinement.</p>
+                  <a class="btn btn-primary" href="">Abonnez-vous <i class="fa-brands fa-instagram m-1"></i></a>
                 </div>
               </div>
             </div>
@@ -53,28 +57,28 @@
         <div class="row">
             <div class="col-lg-4 col-md-6 mb-4 px-4">
                 <div class="card border-0 shadow-lg rounded-4" style="padding: 1REM;">
-                    <img src="{% static 'images/plane.png' %}" class="card-img-top mx-auto mt-3" style="width: 80px; height: 80px;" alt="Best Flights">
+                    <img src="{% static '../static/images/image.png' %}" class="card-img-top services-img mx-auto">
                     <div class="card-body">
-                        <h5 class="card-title" style="color: #ba4395;">Best Flights</h5>
-                        <p  class="card-text">Find affordable and comfortable flights to your dream destinations with ease.</p>
+                        <h5 class="card-title" style="color: #ba4395;">Permis de conduire international</h5>
+                        <p class="card-text" style="color: #757688;">Obtenez votre permis international facilement pour conduire à l'étranger en toute légalité.</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4 px-4">
                 <div class="card border-0 shadow-lg rounded-4" style="padding: 1REM;">
-                    <img src="{% static 'images/microphone.png' %}" class="card-img-top mx-auto mt-3" style="width: 80px; height: 80px;" alt="Local Events">
+                    <img src="{% static '../static/images/05.jpg' %}" class="card-img-top services-img mx-auto ">
                     <div class="card-body">
-                        <h5 class="card-title" style="color: #ba4395;">Local Events</h5>
-                        <p class="card-text">Stay updated on the best local events and cultural experiences.</p>
+                        <h5 class="card-title" style="color: #ba4395;">Transfert aéroport</h5>
+                        <p class="card-text" style="color: #757688;">Profitez d’un service de transfert fiable et confortable vers ou depuis l’aéroport.</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-12 mb-4 px-4">
                 <div class="card border-0 shadow-lg rounded-4" style="padding: 1REM;">
-                    <img src="{% static 'images/adjust.png' %}" class="card-img-top mx-auto mt-3" style="width: 80px; height: 80px;" alt="Customization" >
+                    <img src="{% static '../static/images/billet.jpg' %}" class="card-img-top services-img mx-auto">
                     <div class="card-body">
-                        <h5 class="card-title" style="color: #ba4395;">Customization</h5>
-                        <p  class="card-text">Personalize your travel plans and create unique itineraries tailored just for you.</p>
+                        <h5 class="card-title" style="color: #ba4395;">Billet d'avion</h5>
+                        <p class="card-text" style="color: #757688;">Réservez vos billets d’avion, de train ou d’événements avec notre service dédié.</p>
                     </div>
                 </div>
             </div>
@@ -87,28 +91,46 @@
         <div class="row justify-content-center text-center">
             <div class="col-12 mb-4">
                 <h5 style="color: #ba4395; font-weight: bold;">Destinations</h5>
-                <h2 style="color: #56c0e9; font-size: 2.5rem;">Meilleures ventes</h2>
+                <h2 style="color: #56c0e9; font-size: 2.5rem;"> Nos voyages organisés</h2>
             </div>
         </div>
         <div class="row">
             {% if Destinations %}
                 {% for destination in Destinations %}
-                
+                {% if destination.is_available %}
             <div class="col-lg-4 col-md-6 mb-4 px-4">
                 <div class="card border-0 shadow-lg rounded-4">
-                    <img  src="{{ destination.image.url }}" alt="{{ destination.title }}" class="card-img-top rounded-top-4" style=" height: 20rem;">
+                    <img  src="{{ destination.image.url }}" alt="{{ destination.title }}" class="card-img-top rounded-top-4" style=" height: 21rem;">
                     <div class="card-body">
                         <div class="container d-flex flex-row"
-                        style="justify-content: space-between;">
+                        style="justify-content: space-between; align-items: center;">
                             <h5 class="card-title" style="color: #ba4395;">{{ destination.title }}</h5>
-                            <h5 class="card-title" style="color: #56c0e9;"> {{ destination.price_per_person }} DA</h5>
+                            <h6 class="fw-bold mb-3" style="color: #56c0e9;"> {{ destination.subtitle }} </h6>
                         </div>
                         <div class="container">
-                            <a href="{% url 'trip' destination.id %}" class="btn btn-primary px-4 py-2 mt-2">Plus d'info</a>
+                            <a href="{% url 'trip' destination.id %}" class="btn btn-primary px-4 py-2 mt-2 ">Plus d'info</a>
                         </div>
                     </div>
                 </div>
             </div>
+            {% else %}
+            <div class="col-lg-4 col-md-6 mb-4 px-4">
+                <div class="card border-0 shadow-lg rounded-4">
+                    <span class="badge bg-danger position-absolute top-0 start-0 m-3">Non disponible</span>
+                    <img  src="{{ destination.image.url }}" alt="{{ destination.title }}" class="card-img-top rounded-top-4" style=" height: 21rem;">
+                    <div class="card-body">
+                        <div class="container d-flex flex-row"
+                        style="justify-content: space-between; align-items: center;">
+                            <h5 class="card-title" style="color: #ba4395;">{{ destination.title }}</h5>
+                            <h6 class="fw-bold mb-3" style="color: #56c0e9;"> {{ destination.subtitle }} </h6>
+                        </div>
+                        <div class="container">
+                            <a href="{% url 'trip' destination.id %}" class="btn btn-primary px-4 py-2 mt-2 ">Plus d'info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
             {% endfor %}
             {% endif %}
         </div>
@@ -136,8 +158,7 @@
 </section>
 
 <style>
-    
-.dark-mode{
+    .dark-mode{
     --primary-color : #222;
     --secondary-color : #f8f9fa ;
     --third-color:#edeeee ;
@@ -150,7 +171,7 @@
 .btn-primary{
     background-color: #56c0e9 !important; border: none !important; font-weight: bold;
 }
-    .btn-primary:hover {
+.btn-primary:hover {
     background-color: #ba4395 !important;
 }
 
@@ -174,6 +195,10 @@ p{
     .newsletter-container{
     width: 90% !important;
 }
+}
+.services-img{
+    width: 100%;
+    height: 15REM;
 }
 </style>
 

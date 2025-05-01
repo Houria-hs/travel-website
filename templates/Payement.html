@@ -3,8 +3,8 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
-<div class="container py-5 mt-5">
+<section style="background-color: var(--primary-color);">
+  <div class="container py-5 ">
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="card shadow-lg border-0 rounded-4 p-4">
@@ -53,7 +53,20 @@
         </div>
       </div>
     </div>
-  </div>
-  
-<br> <br>
+</div>
+</section>
+
+<style>
+      .dark-mode{
+    --primary-color : #222;
+    --secondary-color : #f8f9fa ;
+    --third-color:#edeeee ;
+}
+    :root{
+    --primary-color : #f8f9fa;
+    --secondary-color : #222 ;
+    --third-color:#757688 ;
+}
+</style>
+
 {% endblock %}

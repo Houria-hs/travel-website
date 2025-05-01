@@ -4,5 +4,18 @@
     box-sizing: border-box;
 }
 
+    .dark-mode{
+    --primary-color : #222;
+    --secondary-color : #f8f9fa ;
+    --third-color:#edeeee ;
+}
+    :root{
+    --primary-color : #f8f9fa;
+    --secondary-color : #222 ;
+    --third-color:#757688 ;
+}
+
+
+
 
 
