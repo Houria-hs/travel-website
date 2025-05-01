@@ -21,7 +21,7 @@ def Register(request):
             user = form.save()
             login(request , user)
             username = form.cleaned_data.get('username')
-            messages.success(request , f'Account created for {username}!')
+            messages.success(request , f'Compte créé pour {username}!')
             return redirect('home')
     else:
         form = RegisterForm()
@@ -47,7 +47,7 @@ def logout_view(request):
 def trip(request, pk):
 
     if not request.user.is_authenticated:
-        messages.error(request, 'You are not authorized to access this page. Please log in!')
+        messages.error(request, 'Vous n’êtes pas autorisé(e) à accéder à cette page. Veuillez vous connecter !')
         return redirect('login')  
 
     trip = get_object_or_404(Destination, id=pk)  
@@ -68,10 +68,18 @@ def trip(request, pk):
         Booking.number_of_travelers = numberOfTravelers
         Booking.selected_trip = trip.title
         Booking.user = request.user 
-        Booking.room_type = room_type
-        Booking.room_price = tarif.price
+
+        if trip.has_multiple_tarifs:
+            room_type = request.POST.get('roomType')
+            tarif = Tarif.objects.get(destination=trip, room_type=room_type)
+            Booking.room_type = room_type
+            Booking.room_price = float(tarif.price) 
+        else:
+            Booking.room_type = "Standard"
+            Booking.room_price = trip.price_per_person
+
         Booking.save()
-        messages.success(request, 'your informations has been saved successfuly !')
+        messages.success(request, ' Vos informations ont été enregistrées avec succès !')
         return redirect('bookingSummary', trip_id=trip.id)
     
     return render(request, 'trip.html', {'trip': trip  , 'tarifs':tarifs})   
@@ -83,15 +91,15 @@ def Newsletter_view(request):
         try:
             validate_email(email)
         except ValidationError:
-            messages.error(request, 'Invalid email format.')
+            messages.error(request, ' Format d’e-mail invalide.')
             return redirect('home')
         
         if Subscribe.objects.filter(email = email).exists():
-            messages.success(request , 'You are already saved')
+            messages.success(request , 'Vous êtes déjà enregistré(e).')
             return redirect('home')
         else:
             Subscribe.objects.create(email = email)
-            messages.success(request , 'Got it , thank you !')
+            messages.success(request , ' Compris, merci !')
     return render(request , 'home.html' , {})
 
 def ThankYou(request):
@@ -104,13 +112,19 @@ def bookingSummary(request , trip_id):
     if not latest_booking:
         messages.error(request, "Aucune réservation trouvée.")
         return redirect('trip', trip_id=trip_id)
-    
+
     numberOfTravelers = latest_booking.number_of_travelers
     promoCodeInput = ''
     if request.method =='POST':
         promoCodeInput = request.POST.get('promo', '').strip()
 
-    subtotal = float(trip.price_per_person )* numberOfTravelers
+
+    if trip.has_multiple_tarifs:
+        price_per_person = latest_booking.room_price
+    else:
+        price_per_person = trip.price_per_person
+
+    subtotal = float(price_per_person )* numberOfTravelers
     discount = 0
     final_total = subtotal
     promo_error = None
@@ -132,11 +146,10 @@ def bookingSummary(request , trip_id):
         'total': final_total,
         'promo_code': promoCodeInput,
         'promo_error': promo_error,
+        'price_per_person': price_per_person,
     }
 
     return render(request, 'bookingSummary.html', context)
-
-
 
 def payement_view(request):
     if request.method =='POST':
@@ -153,7 +166,7 @@ def payement_view(request):
         Payement_Proof.transfer_date = TransferDate
         Payement_Proof.screenshot = Screenshot
         Payement_Proof.save()
-        messages.success(request, 'Your proof has been sent , thank you !')
+        messages.success(request, 'Votre justificatif a été envoyé, merci !')
         return redirect('ThankYou')
 
     return render(request , 'Payement.html' , {})
