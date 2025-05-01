@@ -18,6 +18,7 @@ class Destination(models.Model):
     tarif = models.TextField(max_length=1000 , blank=True, null=True)
     has_multiple_tarifs = models.BooleanField(default=False) 
     price_per_person = models.FloatField(blank=True, null=True) 
+    is_available = models.BooleanField(default=True)
 
 
     def __str__(self):
@@ -80,7 +81,7 @@ class PromoCode(models.Model):
 
 class PayementProof(models.Model):
     full_name = models.CharField(max_length=100)
-    phone = models.IntegerField()
+    phone = models.CharField(max_length=20)
     trip_title = models.CharField(max_length=100)
     transfer_date = models.DateField()
     screenshot = models.ImageField(upload_to="paymentProofs/")
