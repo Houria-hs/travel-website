@@ -1,0 +1,34 @@
+.env
+.env.*
+
+
+*.log
+*.pot
+*.pyc
+db.sqlite3
+*.sqlite3
+
+__pycache__/
+*.py[cod]
+*.so
+
+
+# 8. Static/media files (optional – only if you're not using cloud storage)
+staticfiles/
+media/
+
+# 9. Gunicorn socket file (if used)
+gunicorn.sock
+
+
+
+# 5. Editor/IDE files
+.vscode/
+.idea/
+
+# 6. OS system files
+.DS_Store
+Thumbs.db
+
+
+
