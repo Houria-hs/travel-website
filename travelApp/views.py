@@ -44,8 +44,9 @@ def logout_view(request):
     logout(request)
     return redirect('home')
 
-def trip(request, pk):
+from django.core.exceptions import ObjectDoesNotExist
 
+def trip(request, pk):
     if not request.user.is_authenticated:
         messages.error(request, 'Vous n’êtes pas autorisé(e) à accéder à cette page. Veuillez vous connecter !')
         return redirect('login')  
@@ -59,7 +60,6 @@ def trip(request, pk):
         phone = request.POST.get('phone')
         numberOfTravelers = request.POST.get('numberOfTravelers')
         room_type = request.POST.get('roomType')
-        tarif = Tarif.objects.get(destination=trip, room_type=room_type)
 
         Booking = booking() 
         Booking.user_fullname = full_name
@@ -69,20 +69,25 @@ def trip(request, pk):
         Booking.selected_trip = trip.title
         Booking.user = request.user 
 
-        if trip.has_multiple_tarifs:
-            room_type = request.POST.get('roomType')
-            tarif = Tarif.objects.get(destination=trip, room_type=room_type)
-            Booking.room_type = room_type
-            Booking.room_price = float(tarif.price) 
-        else:
-            Booking.room_type = "Standard"
-            Booking.room_price = trip.price_per_person
+        try:
+            if trip.has_multiple_tarifs:
+                tarif = Tarif.objects.get(destination=trip, room_type=room_type)
+                Booking.room_type = room_type
+                Booking.room_price = float(tarif.price) 
+            else:
+                Booking.room_type = "Standard"
+                Booking.room_price = trip.price_per_person
 
-        Booking.save()
-        messages.success(request, ' Vos informations ont été enregistrées avec succès !')
-        return redirect('bookingSummary', trip_id=trip.id)
-    
-    return render(request, 'trip.html', {'trip': trip  , 'tarifs':tarifs})   
+            Booking.save()
+            messages.success(request, 'Vos informations ont été enregistrées avec succès !')
+            return redirect('bookingSummary', trip_id=trip.id)
+
+        except ObjectDoesNotExist:
+            messages.error(request, "Erreur : Tarif introuvable pour ce type de chambre.")
+            return redirect('trip', pk=trip.id)
+
+    return render(request, 'trip.html', {'trip': trip, 'tarifs': tarifs})
+
 
 def Newsletter_view(request):
     if request.method == 'POST':
