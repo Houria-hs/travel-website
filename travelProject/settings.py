@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'travelApp',
-    'sslserver'
 ]
+if os.environ.get('RENDER') != 'true':  # or use DEBUG if you prefer
+    INSTALLED_APPS += ['sslserver']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
