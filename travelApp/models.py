@@ -40,7 +40,7 @@ class Tarif(models.Model):
     def __str__(self):
         return f"{self.destination.title} - {self.room_type.capitalize()} Room"
 
-class booking(models.Model):
+class Booking(models.Model):
     STATUS_CHOICES = [
         ('Pending', 'Pending'),
         ('Processing', 'Processing'),
@@ -51,7 +51,7 @@ class booking(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE , null=True , blank= True)
     booking_date = models.DateTimeField(auto_now_add=True)
     user_fullname = models.CharField(max_length=200 , blank=True)
-    user_phone = models.CharField(max_length = 10 , blank=True)
+    user_phone = models.CharField(max_length = 20 , blank=True)
     user_email = models.EmailField(max_length=200 , blank=True)
     selected_trip = models.CharField(max_length=100)
     number_of_travelers = models.IntegerField()
