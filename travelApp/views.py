@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 from django.http import JsonResponse
 from django.contrib import messages
 from .forms import RegisterForm  , CustomLoginForm
-from .models import Destination , booking , Subscribe , PromoCode , PayementProof , Tarif
+from .models import Destination ,Booking , Subscribe , PromoCode , PayementProof , Tarif
 
 # Create your views here.
 
@@ -61,24 +61,24 @@ def trip(request, pk):
         numberOfTravelers = request.POST.get('numberOfTravelers')
         room_type = request.POST.get('roomType')
 
-        Booking = booking() 
-        Booking.user_fullname = full_name
-        Booking.user_email = email
-        Booking.user_phone = phone
-        Booking.number_of_travelers = numberOfTravelers
-        Booking.selected_trip = trip.title
-        Booking.user = request.user 
+        booking = Booking() 
+        booking.user_fullname = full_name
+        booking.user_email = email
+        booking.user_phone = phone
+        booking.number_of_travelers = numberOfTravelers
+        booking.selected_trip = trip.title
+        booking.user = request.user 
 
         try:
             if trip.has_multiple_tarifs:
                 tarif = Tarif.objects.get(destination=trip, room_type=room_type)
-                Booking.room_type = room_type
-                Booking.room_price = float(tarif.price) 
+                booking.room_type = room_type
+                booking.room_price = float(tarif.price) 
             else:
-                Booking.room_type = "Standard"
-                Booking.room_price = trip.price_per_person
+                booking.room_type = "Standard"
+                booking.room_price = trip.price_per_person
 
-            Booking.save()
+            booking.save()
             messages.success(request, 'Vos informations ont été enregistrées avec succès !')
             return redirect('bookingSummary', trip_id=trip.id)
 
@@ -112,7 +112,7 @@ def ThankYou(request):
 
 def bookingSummary(request , trip_id):
     trip = get_object_or_404(Destination, id=trip_id)
-    latest_booking = booking.objects.filter(selected_trip=trip).last()
+    latest_booking = Booking.objects.filter(selected_trip=trip).last()
 
     if not latest_booking:
         messages.error(request, "Aucune réservation trouvée.")

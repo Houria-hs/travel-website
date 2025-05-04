@@ -10,5 +10,5 @@ urlpatterns = [
     path('Newsletter/', views.Newsletter_view , name='Newsletter_view' ),
     path('ThankYou/', views.ThankYou , name='ThankYou' ),
     path('bookingSummary/<int:trip_id>/', views.bookingSummary , name='bookingSummary' ),
-    path('payement/', views.payement_view , name='payement' ),
+    path('payement_view/', views.payement_view , name='payement_view' ),
 ]
