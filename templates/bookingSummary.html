@@ -9,7 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
+  <div class="container px-3 px-sm-4">
     <div class="card mx-auto" style="max-width: 600px;">
       <div class="text-center mb-4">
         <i class="bi bi-clipboard-check-fill" style="font-size: 3rem;"></i>
@@ -55,16 +55,16 @@
       <form method="post" class="mt-4">
         {% csrf_token %}
         <input type="hidden" name="travelers" value="{{ travelers }}">
-        <div class="input-group">
+        <div class="input-group  w-100">
           <input type="text" name="promo" class="form-control" placeholder="Entrez un code promo" value="{{ promo_code }}">
           <button class="btn btn-promo" type="submit">Appliquer</button>
         </div>
       </form>
 
-      <div class="text-center mt-4">
-        <a href="{% url 'payement_view' %}" class="btn btn-light px-5 py-2 mb-3 rounded-pill">Procéder au paiement</a>
-        <a href="{% url 'home' %}" class="btn btn-light px-5 py-2 mb-3 rounded-pill"> Retour à l’accueil</a>
-      </div>
+      <div class="text-center mt-4 d-flex flex-column gap-2">
+        <a href="{% url 'payement_view' %}" class="btn btn-light px-4 py-2 rounded-pill">Procéder au paiement</a>
+        <a href="{% url 'home' %}" class="btn btn-light px-4 py-2 rounded-pill">Retour à l’accueil</a>
+      </div>      
       <div class="text-center mt-4">
         <span>Paiement au bureau ? Veuillez prendre une capture d’écran du résumé de la réservation.</span>
       </div>
@@ -138,4 +138,42 @@
   .discount-line {
     color: #cff;
   }
+  @media (max-width: 576px) {
+  .summary-title {
+    font-size: 1.5rem;
+  }
+
+  .info-line {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 0.95rem;
+  }
+
+  .info-line span:last-child {
+    align-self: flex-end;
+    font-weight: 500;
+  }
+
+  .total {
+    font-size: 1.4rem;
+  }
+
+  .form-control {
+    font-size: 0.9rem;
+  }
+
+  .btn-promo, .btn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  .text-center span {
+    font-size: 0.85rem;
+  }
+
+  .card {
+    padding: 20px;
+  }
+}
+
 </style>

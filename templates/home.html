@@ -57,7 +57,7 @@
         <div class="row">
             <div class="col-lg-4 col-md-6 mb-4 px-4">
                 <div class="card border-0 shadow-lg rounded-4" style="padding: 1REM;">
-                    <img src="{% static '../static/images/image.png' %}" class="card-img-top services-img mx-auto">
+                    <img src="{% static '../static/images/conduire.jpg' %}" class="card-img-top services-img mx-auto">
                     <div class="card-body">
                         <h5 class="card-title" style="color: #ba4395;">Permis international</h5>
                         <p class="card-text" style="color: #757688;">Obtenez votre permis international facilement pour conduire à l'étranger en toute légalité.</p>
@@ -139,7 +139,7 @@
 
 <section  class="newsletter-section py-5" style="background-color: var(--primary-color);">
     <div class="container newsletter-container" >
-        <div class="row p-5 d-flex flex-column align-items-center">
+        <div class="row nws_row p-5 d-flex flex-column align-items-center">
             <div class="col-12 mb-4 text-center">
                 <img class="mb-3" src="{% static '../static/images/newsletter.png' %}" alt="">
                 <h4 style="color: #56c0e9; font-weight: bold;">Abonnez-vous pour recevoir des informations, les dernières actualités et d'autres offres intéressantes sur nous</h4>
@@ -147,9 +147,9 @@
             <div class="col-12 col-md-8 col-lg-6">
                 <form action="{% url 'Newsletter_view' %}" method="POST">
                     {% csrf_token %}
-                    <div class="input-group mb-3">
-                        <input type="email" name="email" class="form-control nw_input" placeholder="Entrez votre adresse e-mail" aria-label="Email address" aria-describedby="button-addon2" style="border: 1px solid #56c0e9; border-radius: 25px 0 0 25px; padding: 12px;" required>
-                        <button type="submit" class="btn btn-primary px-3  py-2 nw_button" style="background-color: #56c0e9; border: none; font-weight: bold; color: #fff; border-radius: 0 25px 25px 0;" id="button-addon2"> S’abonner</button>
+                    <div class="input-group nw_input_grp mb-3">
+                        <input type="email" name="email" class="form-control nw_input" placeholder="Entrez votre adresse e-mail" aria-label="Email address" aria-describedby="button-addon2" required>
+                        <button type="submit" class="btn btn-primary px-3  py-2 nw_button" id="button-addon2"> S’abonner</button>
                     </div>
                 </form>
             </div>
@@ -191,27 +191,55 @@ p{
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     width: 70% !important;
 }
+.services-img{
+    width: 100%;
+    height: 10REM;
+}
+.nw_input{
+    border: 1px solid #56c0e9;
+    border-radius: 25px 0 0 25px;
+    padding: 12px;
+}
+.nw_button{
+    background-color: #56c0e9;
+    border: none; font-weight: bold;
+    color: #fff;
+    border-radius: 0 25px 25px 0;
+}
 @media (max-width: 576px) {
     .newsletter-container{
     width: 100% !important;
     }
   .nw_input {
-    width: 80% !important;
+    width: 100% !important;
     margin-bottom: 10px;
+    border-radius: 1rem !important;
   }
 
   .nw_button {
-    width: 20% !important;
+    width: 50% !important;
+    font-size: .5rem;
+    border-radius: .8rem !important;
+  }
+  .nws_row{
+    width: 100% !important;
   }
   .destination_card{
     width: 100% !important;
   }
+  .services-img{
+    width: 100%;
+    height: 8REM;
+    }
+    .nw_input_grp{
+        display: flex;
+        flex-direction: column;
+        justify-content: center !important;
+        align-items: center !important;
+    }
 }
 
-.services-img{
-    width: 100%;
-    height: 15REM;
-}
+
 </style>
 
 
