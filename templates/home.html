@@ -105,7 +105,7 @@
                         <div class="container d-flex flex-row"
                         style="justify-content: space-between !important; align-items: center;">
                             <h5 class="card-title" style="color: #ba4395;">{{ destination.title }}</h5>
-                            <h6 class="fw-bold mb-3" style="color: #56c0e9;"> {{ destination.subtitle }} </h6>
+                            <h6 class="fw-bold mb-3 ml-3" style="color: #56c0e9;"> {{ destination.subtitle }} </h6>
                         </div>
                         <div class="container">
                             <a href="{% url 'trip' destination.id %}" class="btn btn-primary px-4 py-2 mt-2 ">Plus d'info</a>
@@ -115,14 +115,14 @@
             </div>
             {% else %}
             <div class="col-lg-4 col-md-6 mb-4 px-4">
-                <div class="card border-0 shadow-lg rounded-4">
+                <div class="card border-0 shadow-lg rounded-4 destination_card">
                     <span class="badge bg-danger position-absolute top-0 start-0 m-3">Non disponible</span>
                     <img  src="{{ destination.image.url }}" alt="{{ destination.title }}" class="card-img-top rounded-top-4" style=" height: 21rem;">
                     <div class="card-body">
                         <div class="container d-flex flex-row"
                         style="justify-content: space-between; align-items: center;">
                             <h5 class="card-title" style="color: #ba4395;">{{ destination.title }}</h5>
-                            <h6 class="fw-bold mb-3" style="color: #56c0e9;"> {{ destination.subtitle }} </h6>
+                            <h6 class="fw-bold mb-3 ml-3" style="color: #56c0e9;"> {{ destination.subtitle }} </h6>
                         </div>
                         <div class="container">
                             <a href="{% url 'trip' destination.id %}" class="btn btn-primary px-4 py-2 mt-2 ">Plus d'info</a>
@@ -193,14 +193,17 @@ p{
 }
 @media (max-width: 576px) {
     .newsletter-container{
-    width: 95% !important;
+    width: 100% !important;
     }
   .nw_input {
-    width: 100% !important;
+    width: 80% !important;
     margin-bottom: 10px;
   }
 
   .nw_button {
+    width: 20% !important;
+  }
+  .destination_card{
     width: 100% !important;
   }
 }

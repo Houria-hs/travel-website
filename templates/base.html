@@ -45,7 +45,7 @@
                             <li class="nav-item fw-bold">
                                 <a class="nav-link " href="{% url 'login' %}">Connexion</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item d-flex justify-content-center align-items-center">
                                 <a class="btn btn-primary px-4" href="{% url 'Register' %}" style="background-color: #56c0e9; border: none;"> Inscription</a>
                             </li>
                             {% endif %}
@@ -90,10 +90,10 @@
                     <div class="card-body">
                         <h5 class="card-title" style="color: #56c0e9; font-weight: bold;">Links</h5>
                         <ul class="list-unstyled">
-                            <li><a href="#" style="text-decoration: none; ">Accueil</a></li>
-                            <li><a href="#" style="text-decoration: none; ">A propos</a></li>
-                            <li><a href="#" style="text-decoration: none; ">Services</a></li>
-                            <li><a href="#" style="text-decoration: none; ">Destinations</a></li>
+                            <li class="footer-li"><a href="#" style="text-decoration: none; ">Accueil</a></li>
+                            <li class="footer-li"><a href="#" style="text-decoration: none; ">A propos</a></li>
+                            <li class="footer-li"><a href="#" style="text-decoration: none; ">Services</a></li>
+                            <li class="footer-li"><a href="#" style="text-decoration: none; ">Destinations</a></li>
                         </ul>
                     </div>
                 </div>
@@ -101,15 +101,15 @@
                     <div class="card-body">
                         <h5 class="card-title" style="color: #56c0e9; font-weight: bold;">Contact</h5>
                         <ul class="list-unstyled">
-                            <li>
+                            <li class="footer-li">
                                 <i style="color: #ba4395;" class="fa-solid fa-phone  m-1"></i>
                                 <a href="tel:+213780372517" style="text-decoration: none;">+213-780-37-25-17</a>
                             </li>
-                            <li>
+                            <li class="footer-li">
                                 <i style="color: #ba4395;" class="fa-solid fa-envelope  m-1"></i>
                                 <a href="mailto:Judandjurry.tourism@gmail.com" style="text-decoration: none;">Judandjurry.tourism@gmail.com</a>
                             </li>
-                            <li>
+                            <li class="footer-li">
                                 <i style="color: #ba4395;" class="fa-solid fa-location-dot m-1"></i>
                                 <span style="color: #757688;">Cité 11 décembre 1960 Boumerdes</span>
                             </li>
@@ -120,17 +120,17 @@
                     <div class="card-body">
                         <h5 class="card-title" style="color: #56c0e9; font-weight: bold;">Social Media</h5>
                         <ul class="list-unstyled">
-                            <li><a href="https://www.instagram.com/judandjurry.tourism/" style="text-decoration: none; ">
+                            <li class="footer-li"><a href="https://www.instagram.com/judandjurry.tourism/" style="text-decoration: none; ">
                                 <span>
                                     <i class="fa-brands fa-square-instagram m-1" style="color: #ba4395;"></i>
                                     <span> judanddjurry.tourism </span>
                                 </span>
                             </a></li>
-                            <li><a href="https://www.facebook.com/JudAndJurry" style="text-decoration: none; ">
+                            <li class="footer-li"><a href="https://www.facebook.com/JudAndJurry" style="text-decoration: none; ">
                                 <i class="fa-brands fa-facebook m-1" style="color: #ba4395;"></i>
                             <span> judanddjurry.tourism  </span>
                             </a></li>
-                            <li><a href="https://x.com/JudJurry" style="text-decoration: none;" >
+                            <li class="footer-li"><a href="https://x.com/JudJurry" style="text-decoration: none;" >
                                 <i class="fa-brands fa-twitter" style="color: #ba4395;"></i>
                                 <span> judanddjurry.tourism  </span>
                             </a></li>
@@ -189,9 +189,15 @@ a{
 .logo-card{
     width: 20%;
 }
+.footer-li{
+    font-size: 1rem;
+}
 @media only screen and (max-width: 576px) {
     .footer-cards{
-    width: 90%;
+    width: 100%;
+    }
+    .footer-li{
+    font-size: .5rem;
 }
 }
 .alert {
