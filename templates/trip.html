@@ -4,102 +4,102 @@
 
 {% block content %}
 <section style="background-color: var(--primary-color);">
-{% if trip %}
-<div class="container py-5 d-flex justify-content-center">
+  {% if trip %}
+  <div class="container py-5 d-flex justify-content-center">
     <div class="card shadow-lg border-0 d-flex flex-column flex-md-row w-100" style="max-width: 1100px; border-radius: 20px; overflow: hidden;">
-        <div class="row g-0">
-           <!-- Trip Image -->
+      <div class="row g-0">
+        <!-- Trip Image -->
         <div class="col-md-5 p-0">
           <img src="{{ trip.image.url }}" alt="Trip Image" class="img-fluid h-100 w-100 object-fit-cover">
-      </div>
+        </div>
 
-      <!-- Trip Info -->
-      <div class="col-md-7 p-4" style="background-color: #fefefe;">
+        <!-- Trip Info -->
+        <div class="col-md-7 p-4" style="background-color: #fefefe;">
           <!-- Title -->
           <h2 class="fw-bold mb-3" style="color: #ba4395;">{{ trip.title }}</h2>
-          <h6 class="fw-bold mb-3" style="color: #56c0e9;"> {{ trip.subtitle }} </h6>
-          
+          <h6 class="fw-bold mb-3" style="color: #56c0e9;">{{ trip.subtitle }}</h6>
 
           {% if trip.price_per_person %}
-          <!-- Price -->
           <div class="mb-3">
-              <span class="badge bg-success p-2 fs-6">{{ trip.price_per_person }} DA</span>
-              <small class="text-muted ms-2">par personne</small>
+            <span class="badge bg-success p-2 fs-6">{{ trip.price_per_person }} DA</span>
+            <small class="text-muted ms-2">par personne</small>
           </div>
           {% endif %}
-          <!-- Duration -->
+
           {% if trip.days_and_nights %}
           <div class="mb-2 d-flex align-items-center">
+            <p class="trip-info">
               <strong class="me-1">Durée:</strong> {{ trip.days_and_nights }}
+            </p>
           </div>
           {% else %}
-          <!-- Max People -->
           <div class="mb-2 d-flex align-items-center">
-              <strong class="me-1">Taille du groupe:</strong>{{ trip.max_people }}
+            <p class="trip-info">
+              <strong class="me-1">Taille du groupe:</strong> {{ trip.max_people }}
+            </p>
           </div>
           {% endif %}
+
           <!-- Date Ranges -->
           <div class="mb-2">
-              <div class="d-flex align-items-center">
-                  <strong class="me-1">Premier départ :</strong> {{ trip.from_date }} → {{ trip.To_date }}
-              </div>
-              <div class="d-flex align-items-center mt-1">
-                  <strong class="me-1">Deuxième départ:</strong> {{ trip.second_from_date }} → {{ trip.second_To_date }}
-              </div>
+            <div class="d-flex align-items-center">
+              <p class="trip-info">
+                <strong class="me-1">Premier départ :</strong> {{ trip.from_date }} → {{ trip.To_date }}
+              </p>
+            </div>
+            <div class="d-flex align-items-center">
+              <p class="trip-info">
+                <strong class="me-1">Deuxième départ:</strong> {{ trip.second_from_date }} → {{ trip.second_To_date }}
+              </p>
+            </div>
           </div>
+
           {% if trip.tarif %}
           <div class="mb-2">
             <strong class="me-1">Tarifs:</strong>
-            <p>{{ trip.tarif|linebreaksbr }}</p>
+            <p class="trip-info">{{ trip.tarif|linebreaksbr }}</p>
           </div>
           {% endif %}
+
           <!-- Description -->
           <p class="mt-4 text-muted" style="line-height: 1.7;"><b>{{ trip.description|linebreaksbr }}</b></p>
-      </div>
         </div>
+      </div>
     </div>
-</div>
-{% endif %}
+  </div>
+  {% endif %}
 
-<div class="container py-5">
+  <!-- Booking Form -->
+  <div class="container py-5">
     <div class="row justify-content-center">
       <div class="col-lg-8 col-md-10">
         <div class="card shadow rounded-4 border-0">
           <div class="card-body p-4">
-            <h2 class="text-center mb-4" style="color: #ba4395;">Formulaire de réservation</h2>
-  
+            <h2 class="text-center reservation-h2 mb-4" style="color: #ba4395;">Formulaire de réservation</h2>
+
             <form method="POST">
               {% csrf_token %}
               <div class="row g-3">
-  
-                <!-- Nom complet -->
                 <div class="col-md-6">
                   <label for="FullName" class="form-label">Nom complet</label>
                   <input name="FullName" type="text" class="form-control" id="FullName" required>
                 </div>
-  
-                <!-- Adresse e-mail -->
                 <div class="col-md-6">
                   <label for="email" class="form-label">Adresse e-mail</label>
                   <input name="email" type="email" class="form-control" placeholder="toi@exemple.com" id="email" required>
                 </div>
-  
-                <!-- Nombre de voyageurs -->
                 <div class="col-md-6">
                   <label for="numberOfTravelers" class="form-label">Nombre de voyageurs</label>
                   <input name="numberOfTravelers" type="number" class="form-control" id="numberOfTravelers" required>
                 </div>
-  
-                <!-- Téléphone -->
                 <div class="col-md-6">
                   <label for="phone" class="form-label">Téléphone</label>
                   <input name="phone" type="tel" class="form-control" placeholder="+213 555 123 456" id="phone" required>
                 </div>
-  
               </div>
-              <!-- Type de chambre -->
+
               {% if tarifs %}
-              <div class="col-12">
+              <div class="col-12 mt-3">
                 <label for="roomType" class="form-label">Type de chambre</label>
                 <select name="roomType" id="roomType" class="form-select" required>
                   {% for tarif in tarifs %}
@@ -110,35 +110,53 @@
                 </select>
               </div>
               {% endif %}
-  
-              <button class="btn  btn-primary w-100 mt-4" type="submit">
+
+              <button class="btn btn-primary w-100 mt-4" type="submit">
                 Valider la réservation
               </button>
             </form>
-  
+
           </div>
         </div>
       </div>
     </div>
-</div>
-<br> <br>
+  </div>
+  <br><br>
 </section>
+
+<!-- Style Section -->
 <style>
-      .dark-mode{
-    --primary-color : #222;
-    --secondary-color : #f8f9fa ;
-    --third-color:#edeeee ;
+:root {
+  --primary-color: #f8f9fa;
+  --secondary-color: #222;
+  --third-color: #757688;
 }
-    :root{
-    --primary-color : #f8f9fa;
-    --secondary-color : #222 ;
-    --third-color:#757688 ;
+.dark-mode {
+  --primary-color: #222;
+  --secondary-color: #f8f9fa;
+  --third-color: #edeeee;
 }
-.btn-primary{
-    background-color: #56c0e9 !important; border: none !important; font-weight: bold;
+.btn-primary {
+  background-color: #56c0e9 !important;
+  border: none !important;
+  font-weight: bold;
 }
 .btn-primary:hover {
-    background-color: #ba4395 !important;
+  background-color: #ba4395 !important;
+}
+
+/* Responsive text for trip card */
+@media (max-width: 576px) {
+  .card .trip-info,
+  .card p,
+  .card span,
+  .card small,
+  .card strong {
+    font-size: 0.9rem !important;
+  }
+  .reservation-h2{
+    font-size: 1rem;
+  }
 }
 </style>
 {% endblock %}

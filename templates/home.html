@@ -38,7 +38,7 @@
                     Que vous rêviez de plages exotiques, de découvertes culturelles, d’aventures nature ou de voyages en famille, notre équipe passionnée met tout en œuvre pour vous proposer des circuits soigneusement sélectionnés, au meilleur rapport qualité-prix. Grâce à notre réseau de partenaires fiables à travers le monde, nous vous garantissons un service de qualité, une assistance sur mesure et une tranquillité d’esprit totale.
                     
                     Rejoignez notre communauté de voyageurs satisfaits et laissez-nous transformer vos rêves d’évasion en réalité. Avec [Nom de l’agence], voyagez autrement, voyagez sereinement.</p>
-                  <a class="btn btn-primary" href="https://www.instagram.com/judandjurry.tourism/">Abonnez-vous <i class="fa-brands fa-instagram m-1"></i></a>
+                  <a class="btn btn-primary" href="https://www.instagram.com/judandjurry.tourism/">Abonnez-nous <i class="fa-brands fa-instagram m-1"></i></a>
                 </div>
               </div>
             </div>
@@ -105,7 +105,7 @@
                         <div class="container d-flex flex-row"
                         style="justify-content: space-between !important; align-items: center;">
                             <h5 class="card-title" style="color: #ba4395;">{{ destination.title }}</h5>
-                            <h6 class="fw-bold mb-3 ml-3" style="color: #56c0e9;"> {{ destination.subtitle }} </h6>
+                            <h6 class="fw-bold mb-3 ml-3 destination-subtitle" style="color: #56c0e9;"> {{ destination.subtitle }} </h6>
                         </div>
                         <div class="container">
                             <a href="{% url 'trip' destination.id %}" class="btn btn-primary px-4 py-2 mt-2 ">Plus d'info</a>
@@ -122,7 +122,7 @@
                         <div class="container d-flex flex-row"
                         style="justify-content: space-between; align-items: center;">
                             <h5 class="card-title" style="color: #ba4395;">{{ destination.title }}</h5>
-                            <h6 class="fw-bold mb-3 ml-3" style="color: #56c0e9;"> {{ destination.subtitle }} </h6>
+                            <h6 class="fw-bold mb-3 ml-3 destination-subtitle" style="color: #56c0e9;"> {{ destination.subtitle }} </h6>
                         </div>
                         <div class="container">
                             <a href="{% url 'trip' destination.id %}" class="btn btn-primary px-4 py-2 mt-2 ">Plus d'info</a>
@@ -142,7 +142,7 @@
         <div class="row nws_row p-5 d-flex flex-column align-items-center">
             <div class="col-12 mb-4 text-center">
                 <img class="mb-3" src="{% static '../static/images/newsletter.png' %}" alt="">
-                <h4 style="color: #56c0e9; font-weight: bold;">Abonnez-vous pour recevoir des informations, les dernières actualités et d'autres offres intéressantes sur nous</h4>
+                <h4 class="nws_h4" style="color: #56c0e9; font-weight: bold;">Abonnez-vous pour recevoir des informations, les dernières actualités et d'autres offres intéressantes sur nous</h4>
             </div>
             <div class="col-12 col-md-8 col-lg-6">
                 <form action="{% url 'Newsletter_view' %}" method="POST">
@@ -200,6 +200,9 @@ p{
     border-radius: 25px 0 0 25px;
     padding: 12px;
 }
+.nw_input::placeholder{
+    font-size: .6rem;
+}
 .nw_button{
     background-color: #56c0e9;
     border: none; font-weight: bold;
@@ -207,8 +210,11 @@ p{
     border-radius: 0 25px 25px 0;
 }
 @media (max-width: 576px) {
+    .destination-subtitle{
+        font-size: .6rem;
+    }
     .newsletter-container{
-    width: 100% !important;
+    width: 90% !important;
     }
   .nw_input {
     width: 100% !important;
@@ -217,19 +223,22 @@ p{
   }
 
   .nw_button {
-    width: 50% !important;
+    width:70% !important;
     font-size: .5rem;
     border-radius: .8rem !important;
   }
   .nws_row{
     width: 100% !important;
   }
+  .nws_h4{
+    font-size: 1rem;
+  }
   .destination_card{
-    width: 100% !important;
+    width: 90% !important;
   }
   .services-img{
     width: 100%;
-    height: 8REM;
+    height: 6REM;
     }
     .nw_input_grp{
         display: flex;
@@ -237,10 +246,11 @@ p{
         justify-content: center !important;
         align-items: center !important;
     }
-    body{
+
+}
+body{
         font-family: 'Poppins', sans-serif;
     }
-}
 
 
 </style>
