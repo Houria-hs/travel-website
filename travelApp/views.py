@@ -162,7 +162,7 @@ def payement_view(request):
         phoneNumber = request.POST.get('phone')
         tripTitle = request.POST.get('trip')
         TransferDate = request.POST.get('transfer_date')
-        Screenshot = request.POST.get('screenshot')
+        Screenshot = request.FILES.get('screenshot')
 
         Payement_Proof = PayementProof()
         Payement_Proof.full_name = fullName
