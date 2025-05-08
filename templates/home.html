@@ -57,7 +57,7 @@
         <div class="row">
             <div class="col-lg-4 col-md-6 mb-4 px-4">
                 <div class="card border-0 shadow-lg rounded-4" style="padding: 1REM;">
-                    <img src="{% static 'images/conduire.jpg' %}?v=2" class="card-img-top services-img mx-auto">
+                    <img src="{% static 'images/image.png' %}?v=2" class="card-img-top services-img mx-auto">
                     <div class="card-body">
                         <h5 class="card-title" style="color: #ba4395;">Permis international</h5>
                         <p class="card-text" style="color: #757688;">Obtenez votre permis international facilement pour conduire à l'étranger en toute légalité.</p>
@@ -99,13 +99,13 @@
                 {% for destination in Destinations %}
                 {% if destination.is_available %}
             <div class="col-lg-4 col-md-6 mb-4 px-4">
-                <div class="card border-0 shadow-lg rounded-4">
+                <div class="card border-0 shadow-lg rounded-4 destination_card">
                     <img  src="{{ destination.image.url }}" alt="{{ destination.title }}" class="card-img-top rounded-top-4" style=" height: 21rem;">
                     <div class="card-body">
                         <div class="container d-flex flex-row"
                         style="justify-content: space-between !important; align-items: center;">
                             <h5 class="card-title" style="color: #ba4395;">{{ destination.title }}</h5>
-                            <h6 class="fw-bold mb-3 ml-3 destination-subtitle" style="color: #56c0e9;"> {{ destination.subtitle }} </h6>
+                            <h6 class="fw-bold mb-3  destination-subtitle" style="color: #56c0e9;"> {{ destination.subtitle }} </h6>
                         </div>
                         <div class="container">
                             <a href="{% url 'trip' destination.id %}" class="btn btn-primary px-4 py-2 mt-2 ">Plus d'info</a>
@@ -122,7 +122,7 @@
                         <div class="container d-flex flex-row"
                         style="justify-content: space-between; align-items: center;">
                             <h5 class="card-title" style="color: #ba4395;">{{ destination.title }}</h5>
-                            <h6 class="fw-bold mb-3 ml-3 destination-subtitle" style="color: #56c0e9;"> {{ destination.subtitle }} </h6>
+                            <h6 class="fw-bold mb-3 destination-subtitle" style="color: #56c0e9;"> {{ destination.subtitle }} </h6>
                         </div>
                         <div class="container">
                             <a href="{% url 'trip' destination.id %}" class="btn btn-primary px-4 py-2 mt-2 ">Plus d'info</a>
@@ -192,22 +192,22 @@ p{
     width: 70% !important;
 }
 .services-img{
-    width: 100%;
-    height: 10REM;
+    width: 90%;
+    height: 8REM;
 }
 .nw_input{
-    border: 1px solid #56c0e9;
-    border-radius: 25px 0 0 25px;
-    padding: 12px;
+    border: 1px solid #56c0e9 !important;
+    border-radius: 25px 0 0 25px !important;
+    padding: 12px !important;
 }
 .nw_input::placeholder{
-    font-size: .6rem;
+    font-size: .6rem !important;
 }
 .nw_button{
-    background-color: #56c0e9;
-    border: none; font-weight: bold;
-    color: #fff;
-    border-radius: 0 25px 25px 0;
+    background-color: #56c0e9 !important;
+    border: none; font-weight: bold !important;
+    color: #fff !important;
+    border-radius: 0 25px 25px 0 !important;
 }
 @media (max-width: 576px) {
     .destination-subtitle{
@@ -223,7 +223,7 @@ p{
   }
 
   .nw_button {
-    width:70% !important;
+    width:80% !important;
     font-size: .5rem;
     border-radius: .8rem !important;
   }
@@ -238,7 +238,7 @@ p{
   }
   .services-img{
     width: 100%;
-    height: 6REM;
+    height: 6REM !important;
     }
     .nw_input_grp{
         display: flex;

@@ -129,6 +129,9 @@ STATIC_URL = '/static/'
 # This is where the static files will be collected in production
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'TravelProject/static')]
+
 # Media files (uploads)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
