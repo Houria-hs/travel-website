@@ -13,7 +13,7 @@ class Destination(models.Model):
     To_date = models.CharField(max_length = 20 , default='')
     second_from_date = models.CharField(max_length = 20 , default='')
     second_To_date = models.CharField(max_length = 20 , default='')
-    description = models.TextField(max_length = 1000 , default='')
+    description = models.TextField(max_length = 5000 , default='')
     image = models.ImageField(upload_to='destinations/')
     tarif = models.TextField(max_length=1000 , blank=True, null=True)
     has_multiple_tarifs = models.BooleanField(default=False) 
