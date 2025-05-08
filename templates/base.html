@@ -25,36 +25,36 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                         <ul class="navbar-nav gap-3">
-                            <li class="nav-item fw-bold">
+                            <li class="nav-item fw-bold d-flex justify-content-center align-items-center">
                                 <a style="color: #ba4395;" class="nav-link active" href="{% url 'home' %}">Accueil</a>
                             </li>
-                            <li class="nav-item fw-bold">
+                            <li class="nav-item fw-bold d-flex justify-content-center align-items-center">
                                 <a class="nav-link " href="#About">À propos</a>
                             </li>
-                            <li class="nav-item fw-bold">
+                            <li class="nav-item fw-bold d-flex justify-content-center align-items-center">
                                 <a class="nav-link " href="#Services">Services</a>
                             </li>
-                            <li class="nav-item fw-bold">
-                                <a class="nav-link " href="#Destinations">Destinations</a>
+                            <li class="nav-item fw-bold d-flex justify-content-center align-items-center">
+                                <a class="nav-link" href="#Destinations">Destinations</a>
                             </li>
                             {% if user.is_authenticated %}
-                            <li class="nav-item fw-bold">
+                            <li class="nav-item fw-bold d-flex justify-content-center align-items-center">
                                 <a style="color: #56c0e9;" class="nav-link " href="{% url 'logout' %}">Déconnexion</a>
                             </li>
                             {% else %}
-                            <li class="nav-item fw-bold">
+                            <li class="nav-item fw-bold d-flex justify-content-center align-items-center">
                                 <a class="nav-link " href="{% url 'login' %}">Connexion</a>
                             </li>
                             <li class="nav-item d-flex justify-content-center align-items-center">
                                 <a class="btn btn-primary px-4" href="{% url 'Register' %}" style="background-color: #56c0e9; border: none;"> Inscription</a>
                             </li>
                             {% endif %}
-                            <li class="nav-item ">
+                            <li class="nav-item d-flex justify-content-center align-items-center ">
                                 <a  href="https://wa.me/213770283335"  target="_blank"  class="btn">
                                     <i class="fa-brands fa-whatsapp" style="color: green; font-size: xx-large;"></i>
                                 </a>
                             </li>
-                            <li class="nav-item  mx-2 ">
+                            <li class="nav-item  mx-2 d-flex justify-content-center align-items-center ">
                                 <i id="light" class="fa-solid fa-moon" style="font-size: xx-large;"></i>
                             </li>
                         </ul>
@@ -207,6 +207,5 @@ a{
   margin-bottom: 0 !important;
   overflow: hidden;
 }
-
 </style>
 
