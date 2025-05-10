@@ -7,7 +7,7 @@ class Destination(models.Model):
     title = models.CharField(max_length=200)
     subtitle = models.CharField(max_length=200 , blank=True, null=True)
     price_per_person = models.CharField(max_length=20)
-    days_and_nights = models.CharField(max_length=20)
+    days_and_nights = models.CharField(max_length=25)
     max_people = models.CharField(max_length=20)
     from_date = models.CharField(max_length = 20 , default='')
     To_date = models.CharField(max_length = 20 , default='')
