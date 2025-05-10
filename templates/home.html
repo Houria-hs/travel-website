@@ -147,7 +147,7 @@
             <div class="col-12 col-md-8 col-lg-6">
                 <form action="{% url 'Newsletter_view' %}" method="POST">
                     {% csrf_token %}
-                    <div class="input-group nw_input_grp mb-3">
+                    <div class=" input-group  nw_input_grp mb-3">
                         <input type="email" name="email" class="form-control nw_input" placeholder="Entrez votre adresse e-mail" aria-label="Email address" aria-describedby="button-addon2" required>
                         <button type="submit" class="btn btn-primary px-3  py-2 nw_button" id="button-addon2"> S’abonner</button>
                     </div>
@@ -212,6 +212,21 @@ p{
     border-radius: 0 25px 25px 0 !important;
 }
 @media (max-width: 576px) {
+    h2{
+        font-size: 1.5rem !important;
+    }
+    h1{
+        font-size: 3rem !important;
+    }
+    h5{
+        font-size: smaller !important;
+    }
+    h3{
+        font-size: 1.1rem !important;
+    }
+    h4{
+        font-size: 1rem !important;
+    }
     .img-col{
         height: 60% !important;
     }

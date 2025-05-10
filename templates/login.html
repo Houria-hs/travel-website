@@ -5,8 +5,8 @@
 
 {% block content%}
 
-<section style="background-color: var(--primary-color);">
-    <div class="py-5 d-flex flex-column align-items-center justify-content-center" style="min-height: 100vh;">
+<section style="background-color: var(--primary-color); display: flex; align-items: center; justify-content: center;">
+    <div class="py-5 d-flex flex-column align-items-center justify-content-center login-container" style="min-height: 100vh;">
         <form 
             action="{% url 'login' %}" 
             method="POST" 
@@ -48,6 +48,11 @@
     --primary-color : #f8f9fa;
     --secondary-color : #222 ;
     --third-color:#757688 ;
+}
+@media (max-width: 576px) {
+    .login-container{
+        width: 90% !important;
+    }
 }
 </style>
 
