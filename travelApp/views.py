@@ -153,25 +153,7 @@ def bookingSummary(request , trip_id):
         'promo_error': promo_error,
         'price_per_person': price_per_person,
     }
-
     return render(request, 'bookingSummary.html', context)
 
 def payement_view(request):
-    if request.method =='POST':
-        fullName = request.POST.get('full_name')
-        phoneNumber = request.POST.get('phone')
-        tripTitle = request.POST.get('trip')
-        TransferDate = request.POST.get('transfer_date')
-        Screenshot = request.FILES.get('screenshot')
-
-        Payement_Proof = PayementProof()
-        Payement_Proof.full_name = fullName
-        Payement_Proof.phone = phoneNumber
-        Payement_Proof.trip_title = tripTitle
-        Payement_Proof.transfer_date = TransferDate
-        Payement_Proof.screenshot = Screenshot
-        Payement_Proof.save()
-        messages.success(request, 'Votre justificatif a été envoyé, merci !')
-        return redirect('ThankYou')
-
     return render(request , 'Payement.html' , {})

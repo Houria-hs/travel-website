@@ -17,40 +17,11 @@
             <li class="list-group-item"><strong> Mr :</strong> GAHAR Mohamed Aniss </li>
           </ul>
   
-          <p class="text-center">Après avoir effectué le virement, veuillez téléverser une capture d’écran comme preuve de paiement ci-dessous :</p>
-  
-          <form method="POST" enctype="multipart/form-data" class="mt-4">
-            {% csrf_token %}
-  
-            <div class="mb-3">
-              <label class="form-label">Nom complet</label>
-              <input type="text" name="full_name" class="form-control rounded-3" required>
-            </div>
-  
-            <div class="mb-3">
-              <label class="form-label">Numéro de téléphone</label>
-              <input type="text" name="phone" class="form-control rounded-3" required>
-            </div>
-  
-            <div class="mb-3">
-              <label class="form-label">Titre du voyage</label>
-              <input type="text" name="trip" class="form-control rounded-3" required>
-            </div>
-  
-            <div class="mb-3">
-              <label class="form-label">Date du virement</label>
-              <input type="date" name="transfer_date" class="form-control rounded-3" required>
-            </div>
-  
-            <div class="mb-4">
-              <label class="form-label"> Capture d’écran du paiement</label>
-              <input type="file" name="screenshot" class="form-control rounded-3" required>
-            </div>
-  
-            <div class="d-grid">
-              <button type="submit" class="btn" style="background-color: #ba4395; color: white;">Envoyer</button>
-            </div>
-          </form>
+          <p class="text-center">Après avoir effectué le virement, veuillez téléverser une capture d’écran comme preuve de paiement sur whatsapp :</p>
+          <a  href="https://wa.me/213770283335"  target="_blank"  class="text-center">
+            <!-- <i class="fa-brands fa-whatsapp" style="color: green; font-size: xx-large;"></i> -->
+            lien de notre whatsapp
+          </a>
         </div>
       </div>
     </div>
