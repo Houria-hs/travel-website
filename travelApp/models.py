@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User 
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -14,7 +15,7 @@ class Destination(models.Model):
     second_from_date = models.CharField(max_length = 20 , default='')
     second_To_date = models.CharField(max_length = 20 , default='')
     description = models.TextField(max_length = 5000 , default='')
-    image = models.ImageField(upload_to='destinations/')
+    image = CloudinaryField('destinations')
     tarif = models.TextField(max_length=1000 , blank=True, null=True)
     has_multiple_tarifs = models.BooleanField(default=False) 
     price_per_person = models.FloatField(blank=True, null=True) 

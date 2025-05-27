@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 from django.http import JsonResponse
 from django.contrib import messages
 from .forms import RegisterForm  , CustomLoginForm
-from .models import Destination ,Booking , Subscribe , PromoCode , PayementProof , Tarif
+from .models import Destination ,Booking , Subscribe , PromoCode  , Tarif
 
 # Create your views here.
 
