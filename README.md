@@ -20,7 +20,8 @@ This project was built for a travel agency to improve customer experience and si
 ## 🛠️ Tech Stack
 - **Frontend:** HTML, CSS, JavaScript, Bootstrap 5  
 - **Backend:** Django  
-- **Database:** PostgreSQL  
+- **Database:** PostgreSQL
+- - **Deploement:** Render  
 
 ---
 
