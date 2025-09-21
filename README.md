@@ -1,9 +1,9 @@
-live now on https://judandjurry.onrender.com
+
 ✈️ Travel Booking Website
 
 A full-stack travel booking platform where users can browse available flights, create reservations, and receive payment instructions online.
 This project was built for a travel agency to improve customer experience and simplify the booking process.
-
+live now on https://judandjurry.onrender.com
 ⸻
 
 🚀 Features
