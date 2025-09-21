@@ -25,7 +25,7 @@ live now on https://judandjurry.onrender.com
 
 📂 Installation & Setup
 # Clone this repository
-git clone https://github.com/houria-hs/travelwebsite.git
+git clone https://github.com/Houria-hs/travel-website.git
 
 # Navigate into the project folder
 cd travelwebsite
